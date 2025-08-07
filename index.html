@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ayse Demir Portfolio</title>
+<style>
+  :root {
+    --background-color: #ffffff;
+    --text-color: #666666;
+    --font-family: 'Arial', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  h1 {
+    margin: 0 0 1rem 0;
+    font-weight: var(--font-weight);
+    font-style: bold;
+    color: var(--text-color);
+    font-size: 0.7rem;
+    width: 100%;
+    max-width: 900px;
+    text-align: left;
+  }
+
+  details {
+    width: 100%;
+    max-width: 900px;
+    margin: 0.5rem 0;
+    font-style: bold;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+  }
+
+  summary {
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    font-size: 0.8rem;
+    font-style: bold;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: var(--background-color);
+    color: var(--text-color);
+    padding-left: 2rem;
+  }
+
+  summary::before {
+    content: "+";
+    position: absolute;
+    left: 0.7rem;
+    font-weight: bold;
+    color: var(--text-color);
+    font-style: bold;
+    font-weight: 600;
+  }
+
+  details[open] > summary::before {
+    content: "−";
+  }
+
+  summary:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  details[open] summary {
+    border-radius: 0.5rem;
+  }
+
+  /* Container under each summary for canvas + content */
+  .details-content-wrapper {
+    padding-left: 2rem; /* align left with summary text (summary padding-left) */
+  }
+
+  canvas {
+    display: block;
+    width: 30%;    /* 70% smaller than full width */
+    height: auto;  /* keep aspect ratio */
+    min-height: 180px; /* fixed height for consistent look */
+    background: var(--background-color);
+    margin-bottom: 1rem;
+    border-radius: 0;
+  }
+
+  .content {
+    border: none;
+    border-top: none;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 0;
+    background: var(--background-color);
+    font-style: normal;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+  }
+
+  .experiments-row {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: flex-start;
+  }
+
+  .experiment-textbox {
+    background: var(--background-color);
+    padding: 1rem 0;
+    color: var(--text-color);
+    font-style: normal;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+    font-size: 1rem;
+    overflow-y: auto;
+    border: none;
+  }
+
+  .experiment-textbox, .content p {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  color: var(--text-color);
+  font-style: normal;
+  font-size: 0.9rem; /* match header content font size */
+  line-height: 1.4;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+  a {
+    color: var(--text-color);
+    font-style: normal;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>AYSE DEMIR DAVIDSON | CIMC PORTFOLIO</h1>
+
+<details id="details-1">
+  <summary>ABOUT</summary>
+  <div class="details-content-wrapper">
+    <canvas id="three-canvas-1"></canvas>
+    <div class="content">
+      <p>
+Born and raised in Turkey, I'm a San Francisco-based multidisciplinary artist and data scientist with a passion for seeing and creating beautiful things. Last year I quit my big-tech job to focus on philosophy, teaching yoga, and exploring consciousness.
+
+In all aspects of life, I love working with complexity—finding clarity, truth, and balance within it. My interests and curiosity across various fields help me build meaningful connections and understand the world as it is. I'm fascinated by giving form to ideas and emotions through writing, code, and movement.
+
+As a certified yoga teacher, I work to bring more strength, gentleness, and awareness to my communities. I'm also a martial arts beginner, continuing to explore different ways of embodying presence and discipline. Whether through data, art, or contemplative practice, I'm drawn to the intersection of analytical thinking and creative expression.
+I am self-directed and taught. My curiosity drives my creativity.
+</p>
+    </div>
+  </div>
+</details>
+
+<details id="details-2">
+  <summary>CV</summary>
+  <div class="details-content-wrapper">
+    <canvas id="three-canvas-2"></canvas>
+    <div class="content">
+      <p><a href="#" target="_blank" rel="noopener">Download CV (PDF)</a></p>
+    </div>
+  </div>
+</details>
+      
+
+<details id="details-3">
+  <summary>WRITING & TEACHING SAMPLES</summary>
+  <div class="details-content-wrapper">
+    <canvas id="three-canvas-3"></canvas>
+    <div class="content">
+      <div style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-color); font-family: var(--font-family); font-weight: var(--font-weight);">
+        <p>Here, I've summarized some of my thoughts from Substack posts and classes I taught 
+          to demonstrate my way thinking, developing and presenting an idea. </p>
+      </div>
+
+<div>
+  <!-- Card 1 -->
+  <details>
+    <summary>Can a micro-pause nudge AI from automatic response to something closer to human-like awareness?</summary>
+    <p>
+      I distinguish response from reaction in machine behavior. Today’s models excel at response—a form of task-consciousness that aligns internal patterns to the prompt and returns the most fitting continuation. Reaction is different: a rapid, sometimes non-rational surge shaped by prior conditioning or imagined futures. I’m exploring whether a deliberate micro-pause—a forced gap that allows the system to check, reframe, or inhibit its first impulse—changes behavior in measurable ways, nudging models from pure resonance with the task toward something closer to human-like awareness.
+    </p>
+    <p>
+      Experiment structure: [Describe your structure for this experiment here.]
+    </p>
+  </details>
+
+  <!-- Card 2 -->
+  <details>
+    <summary>Difference-Through-Repetition</summary>
+    <p>Creativity lives in repeats that are never identical. 
+      By asking a model to re-generate the same prompt under slight noise,
+       I watch for meaningful variation rather than random drift. 
+       My question is whether structured randomness—“repetition with difference”—reveals richer patterns than a single polished answer, 
+       and how that diversity can be kept useful, not chaotic.</p>
+    <p>Experiment structure: [Details for experiment 2]</p>
+  </details>
+
+  <!-- Card 3 -->
+  <details>
+    <summary>Perception Expansion</summary>
+    <p>Good language output can feel like a lens widening my attention. Instead of copying my words, the model renames half-formed notions and points to flanking ideas I hadn’t noticed. 
+      I’m mapping how far suggestions can stray from the seed before coherence snaps, and whether that sweet spot reliably nudges my questions forward.</p>
+    <p>Experiment structure: [Details for experiment 3]</p>
+  </details>
+
+  <!-- Card 4 -->
+  <details>
+    <summary>Abstraction over Pixels</summary>
+    <p>Adding detail alone is like upping screen resolution—more pixels, same picture. I’m exploring whether models can climb a notch higher, compressing many concrete examples into portable abstractions. 
+      The aim is to see internal states cluster by underlying rule or structure, not surface wording, and to test if those abstractions survive into novel situations.</p>
+    <p>Experiment structure: [Details for experiment 4]</p>
+  </details>
+
+  <!-- Card 5 -->
+  <details>
+    <summary>Non-Separable Credit</summary>
+    <p>In real collaboration, “what percent was the AI?” resembles asking “what percent of a melody is the violin?” I treat contribution as a property of the whole sequence of moves.
+       By shuffling who drafts first, who edits last, I watch how outcomes—and any stab at credit assignment—swing, looking for moments where synergy outstrips tidy partitioning.</p>
+    <p>Experiment structure: [Details for experiment 5]</p>
+  </details>
+
+  <!-- Card 6 -->
+  <details>
+    <summary>Resonant Spaces with Spatial Sound</summary>
+    <p>In group yoga I sprinkle slow, room-scale audio sweeps that move like a shared breath. 
+      The question isn’t just aesthetic; it’s whether predictable spatial motion entrains collective tempo,
+       lowers variability in breath and attention, 
+       and deepens the felt sense of coherence without verbal instruction.</p>
+    <p>Experiment structure: [Details for experiment 6]</p>
+  </details>
+
+  <!-- Card 7 -->
+  <details>
+    <summary><strong> AI as Rhythm-Sensitive Co-/De-Regulator</strong></summary>
+    <p>Sometimes we need grounding, sometimes disruption. I’m exploring adaptive timing strategies where the system first detects a user’s state—calm, hurried, scattered—then decides to either match pace and soothe or intentionally offset rhythm and energise. 
+      The goal is a conversational partner that modulates, rather than merely mirrors, the human nervous system.</p>
+    <p>Experiment structure: [Details for experiment 7]</p>
+  </details>
+</div>
+
+<div style="text-align: center; margin-bottom: 1rem;">
+  <strong>Class Contents</strong>
+</div>
+<div style="display: flex; gap: 1rem;">
+  <!-- Card 1 -->
+  <details style="flex: 1;">
+    <summary><strong>Artificial Intelligence & Creativity (March 2024) </strong></summary>
+    <p>This class design was inspired by Jessica Riskin’s The Restless Clock and explores comparative frameworks drawn from two major theories of living systems. We will investigate what happens when the interfaces we design begin to learn from our real-time interactions—blurring the boundaries between user and system, subject and object. Where does creative agency begin and end when our creations become active participants in the exchange? </p>
+    <img src="lecture1.png" alt="Lecture 1" style="width: 100%;">
+  </details>
+
+  <!-- Card 2 -->
+  <details style="flex: 1;">
+    <summary><strong>Data Visualization Design</strong></summary>
+    <p>This course traces the evolution of data visualization from its origins—tables, maps, and the invention of Cartesian coordinates—to contemporary practices in interactive web-based visualizations. We will explore how humans have long encoded data in symbols and structures, and ask: how can interaction itself become a form of encoding and understanding information?
+
+Students will engage with core principles of data visualization, learn how meaning is shaped through visual representation, and critically examine both the power and limits of visual data.
+ In the second half of the course, we’ll move from theory to hands-on practice, using Python and Dash to build interactive visualizations for the web. By the end, students will be able to design and implement data-driven web applications, and think critically about how interaction shapes our engagement with data.</p>
+    <img src="lecture2.png" alt="Lecture 2" style="width: 100%;">
+  </details>
+
+  <!-- Card 3 -->
+  <details style="flex: 1;">
+    <summary><strong>Creative Coding Intensive</strong></summary>
+    <p>Methods for evaluating whether AI outputs after a pause are measurably more “human-like,” and reflections on implications for future research.</p>
+    <img src="lecture3.jpg" alt="Lecture 3" style="width: 100%;">
+  </details>
+</div>
+</details>
+
+<details id="details-4">
+  <summary>VISUAL EXPERIMENTS</summary>
+  <div class="details-content-wrapper" style="display: flex; gap: 0.3rem; align-items: flex-start;">
+
+    <!-- Platonic canvas, 30% width -->
+    <canvas id="three-canvas-4" style="flex: 0 0 30%; min-height: 180px;"></canvas>
+
+    <!-- Images container horizontally next to canvas, 70% width total -->
+<div style="display: flex; width: 70%; gap: 0.2rem; margin-bottom: 1rem; height: 300px; align-items: center;">
+  <img src="image3.png" alt="image3" style="width: 40%; min-width: 0; height: 80%; object-fit: contain;" />
+  <img src="image1.png" alt="image1" style="width: 40%; min-width: 0; height: 80%; object-fit: contain;" />
+  <img src="image7.png" alt="image7" style="width: 40%; min-width: 0; height: 80%; object-fit: contain;" />
+</div>
+
+</div>
+<div class="experiment-textbox" style="width: 100%; box-sizing: border-box; padding: 1rem 0;">
+  <p>Traditional software operates as a disembodied logic—an abstract pattern detached from physicality, 
+    often manifesting as rigid, systematic forms. My experiments seek to invert this paradigm: What if computation could embody softness,
+     intuition, or organic ambiguity? Using p5.js as a digital sketchbook, I explore how algorithmic processes might evoke forms that feel alive,
+     resonant, or emotionally charged—inviting computation to ‘inhabit’ the fluidity of the physical world, rather than merely 
+     describe or simulate it. I have experimented with many softwares and their constraints. The more abstract ones like p5.js, c++ 
+     and the less abstract ones like TouchDesigner and Maya.
+     How can software and code become less about cold abstraction, and more about producing felt, and spatially charged experiences?
+     I treat digital tools not as endpoints, but as collaborators in a broader search for resonance between the virtual and the physical.
+     This is not just a technical exercise, but a philosophical provocation: Can code become less like a set of static instructions and more
+     like a living material, responsive and emergent? In these visual experiments, 
+     the digital realm becomes a site for new forms of embodied creativity, where the boundary between algorithm and intuition dissolves. Experiments with p5.js, shortlisted for MIT Media Lab Future Sketches group. Full portfolio available upon request.</p>
+</div>
+
+<div class="visual-experiments-columns" style="display: flex; gap: 1rem; width: 100%; align-items: flex-start;">
+<!-- Left Column: 2x2 Carousel + Textbox + 2 Flower images side by side -->
+<div style="flex: 1 1 70%; max-width: 100%; display: flex; flex-direction: column; gap: 1rem;">
+  
+  <!-- 2x2 Carousel grid -->
+  <div class="carousel-grid" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0.5rem;">
+    <img src="circ6.png" alt="circ1" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
+    <img src="circ1.png" alt="circ2" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
+    <img src="circ3.png" alt="circ3" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
+    <img src="circ4.png" alt="circ4" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
+  </div>
+</div>
+ <img src="resid4.png" alt="resid2" style="width: 60%; height: 33.33%; object-fit: contain;" />
+
+  <!-- Right Column: Stacked Images (resid4, resid2, resid3) -->
+  <div style="flex: 1 1 50%; max-width: 50%; display: flex; flex-direction: column; gap: 0.5rem;">
+    <img src="resid2.png" alt="resid2" style="width: 100%; height: 33.33%; object-fit: contain;" />
+    <img src="resid3.png" alt="resid3" style="width: 100%; height: 33.33%; object-fit: contain;" />
+  </div>
+</div>
+<div class="experiment-textbox" style="width: 100%; box-sizing: border-box; padding: 1rem 0;">
+    <p>
+      <a href="https://instagram.com/residual____" target="_blank">Instagram curation page.</a></p>
+</div>
+
+<div style="display: flex; gap: 1rem; margin-bottom: 1rem; padding: 1rem; align-items: flex-start;">
+  <!-- Images container - 60% width -->
+  <div style="flex: 0 0 60%; display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap;">
+    <img src="exp1.jpg" alt="exp1" style="height: auto; max-width: 32%; object-fit: contain;" />
+    <img src="exp2.jpg" alt="exp2" style="height: auto; max-width: 32%; object-fit: contain;" />
+    <img src="exp3.jpg" alt="exp3" style="height: auto; max-width: 32%; object-fit: contain;" />
+  </div>
+
+  <!-- Textbox container - 40% width -->
+  <div class="experiment-textbox" style="flex: 0 0 40%; box-sizing: border-box; padding: 1rem 0;">
+    <p>Here, prompting is a kind of poetic curation. 
+      It is less abstract then the pure code or pixel itself, not a dot so it requires searching. I keep searching, refining, and tuning until a form appears that I can actually empathize with—when the image feels less like code, and more like something alive in me that was expressed. Prompt is the intent, finding the right output is the expression.</p>
+  </div>
+</div>
+  </div>
+</details>
+
+<details id="details-5">
+  <summary>LINKS & REFERENCES</summary>
+  <div class="details-content-wrapper" style="display: flex; gap: 1rem; align-items: flex-start;">
+    <canvas id="three-canvas-5" style="flex: 0 0 30%; min-height: 180px;"></canvas>
+    <div style="flex: 0 0 70%; display: flex; gap: 2rem;">
+      
+      <!-- Left column: Links with header and descriptors -->
+      <div style="flex: 1;">
+        <strong>Project & Profile links:</strong>
+        <div>
+          <p>
+            <a href="https://huggingface.co/yourusername" target="_blank">HuggingFace</a><br>
+            Sample project links on AI prototypes.
+          </p>
+          <p>
+            <a href="https://www.linkedin.com/in/aysedemirdavidson/" target="_blank">LinkedIn</a><br>
+            Professional network and background.
+          </p>
+          <p>
+            <a href="https://substack.com/@aysedemirdavidson" target="_blank">Substack</a><br>
+            Essays, reflections, and informal writing in Turkish & English.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right column: References -->
+      <div style="flex: 1;">
+        <strong>References:</strong>
+        <div>
+          <p>
+            <a href="mailto:barry@grayarea.org">Barry Threw</a><br>
+           Executive Director, Gray Area Foundation for the Arts. Supervisor (2019-2023).
+          </p>
+          <p>
+            <a href="mailto:jasminetarkeshi@gmail.com">Jasmine Tarkeshi</a><br>
+            Yoga Studio Owner & Senior Teacher; Author. Supervisor (2018–present); Teacher (since 2017).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js';
+
+const platonicGeometries = [
+  new THREE.TetrahedronGeometry(1.2),
+  new THREE.BoxGeometry(1.5, 1.5, 1.5),
+  new THREE.OctahedronGeometry(1.2),
+  new THREE.DodecahedronGeometry(1.2),
+  new THREE.IcosahedronGeometry(1.2),
+];
+
+const glassMaterial = new THREE.MeshPhysicalMaterial({
+  color: 0xd9b0ca,
+  metalness: 0.4,
+  roughness: 0.1,
+  clearcoat: 9,
+  clearcoatRoughness: 2,
+  transmission: 0.2,
+  thickness: 1,
+  ior: 1.5,
+  opacity: 0.7,
+  transparent: true,
+  side: THREE.DoubleSide,
+});
+
+const wireframeMaterial = new THREE.LineBasicMaterial({
+  color: 0xffffff,
+  linewidth: 0,
+});
+
+const loader = new THREE.CubeTextureLoader();
+const envMap = loader.load([
+  'https://threejs.org/examples/textures/cube/Bridge2/posx.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/negx.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/posy.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/negy.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/posz.jpg',
+  'https://threejs.org/examples/textures/cube/Bridge2/negz.jpg'
+]);
+envMap.encoding = THREE.sRGBEncoding;
+
+const scenes = [];
+const cameras = [];
+const renderers = [];
+const solids = [];
+
+for (let i = 0; i < 5; i++) {
+  const canvas = document.getElementById(`three-canvas-${i + 1}`);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setClearColor(0xd9b0ca, 0);
+
+  const scene = new THREE.Scene();
+  scene.environment = envMap;
+  scene.background = null;
+
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+  camera.position.set(0, 0, 5);
+  camera.lookAt(0, 0, 0);
+
+  const geometry = platonicGeometries[i];
+  const mesh = new THREE.Mesh(geometry, glassMaterial);
+  scene.add(mesh);
+
+  const edges = new THREE.EdgesGeometry(geometry);
+  const lineSegments = new THREE.LineSegments(edges, wireframeMaterial);
+  scene.add(lineSegments);
+
+  const ambientLight = new THREE.AmbientLight(0x52b33f, 0.5);
+  scene.add(ambientLight);
+
+  const directionalLight = new THREE.DirectionalLight(0xd9b0ca, 1.2);
+  directionalLight.position.set(5, 5, 5);
+  scene.add(directionalLight);
+
+  scenes.push(scene);
+  cameras.push(camera);
+  renderers.push(renderer);
+  solids.push({ mesh, lineSegments });
+}
+
+let animationFrameId;
+
+function animate() {
+  animationFrameId = requestAnimationFrame(animate);
+  for (let i = 0; i < solids.length; i++) {
+    solids[i].mesh.rotation.x += 0.01 + i * 0.0015;
+    solids[i].mesh.rotation.y += 0.01 + i * 0.0015;
+    solids[i].lineSegments.rotation.x += 0.01 + i * 0.0015;
+    solids[i].lineSegments.rotation.y += 0.01 + i * 0.0015;
+
+    renderers[i].render(scenes[i], cameras[i]);
+  }
+}
+
+function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+
+function resizeAll() {
+  for (let i = 0; i < renderers.length; i++) {
+    const renderer = renderers[i];
+    const camera = cameras[i];
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+  }
+}
+
+function anyDetailsOpen() {
+  for (let i = 1; i <= 5; i++) {
+    if (document.getElementById(`details-${i}`).open) {
+      return true;
+    }
+  }
+  return false;
+}
+
+for (let i = 1; i <= 5; i++) {
+  const details = document.getElementById(`details-${i}`);
+  details.addEventListener('toggle', () => {
+    if (details.open) {
+      resizeAll();
+      if (!animationFrameId) animate();
+    } else {
+      if (!anyDetailsOpen() && animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    }
+  });
+}
+
+window.addEventListener('load', () => {
+  resizeAll();
+  if (anyDetailsOpen()) animate();
+});
+
+window.addEventListener('resize', () => {
+  resizeAll();
+});
+</script>
+
+</body>
+</html>
