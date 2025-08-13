@@ -8,9 +8,9 @@
 <style>
   :root {
     --background-color: #fff;
-    --text-color: #111;
+    --text-color: #262525;
     --font-family: Arial, "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Helvetica, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-weight: 200;
+    --font-weight: 80px;
     --rule: #e8e8e8;
     --left-col: 220px;        /* adjust if you want bigger/smaller canvases */
   }
@@ -30,7 +30,7 @@
   h1 {
     margin: 0 0 1rem;
     font-weight: var(--font-weight);
-    color: var(--text-color);
+    color: #111;
     font-size: 0.7rem;
     width: 100%;
     max-width: 900px;
@@ -43,14 +43,15 @@
 
   .content li {
   line-height: 1.5; /* Try 1.65–1.75 for best readability */
+  font-size: 0.8rem;
 }
 
   /* Details/summary */
-  details { width: 100%; max-width: 900px; margin: 0.5rem 0; font-size: 0.9rem; color: var(--text-color); font-weight: var(--font-weight); }
+  details { width: 100%; max-width: 900px; margin: 0.5rem 0; font-size: 0.8rem; color: var(--text-color); font-weight: var(--font-weight); }
   summary {
     list-style: none; position: relative; cursor: pointer; outline: none;
     font-size: 0.8rem; font-weight: 700; border: none; padding: 0.5rem 1rem 0.5rem 2rem;
-    border-radius: 0.5rem; background: var(--background-color); color: var(--text-color);
+    border-radius: 0.5rem; background: var(--background-color); color: #262525;
   }
   summary::before { content: "+"; position: absolute; left: 0.7rem; font-weight: 600; color: var(--text-color); }
   details[open] > summary::before { content: "−"; }
@@ -75,25 +76,25 @@
 
   /* Generic content */
   .content { border: none; padding: 0; background: var(--background-color); color: var(--text-color); }
-  .content p { font-weight: var(--font-weight); color: var(--text-color); font-size: 0.9rem; line-height: 1.4; margin: 0; padding: 0.5rem 0; }
+  .content p { font-weight: var(--font-weight); color: var(--text-color); font-size: 0.8rem; line-height: 1.4; margin: 0; padding: 0.5rem 0; }
   a { color: var(--text-color); text-decoration: underline; }
   em, blockquote { font-style: italic; }
   blockquote { margin: 0.75rem 0; padding-left: 0.75rem; border-left: 2px solid rgba(0,0,0,0.1); }
-  .textbox { padding: .25rem 0 0.5rem; font-size: 0.9rem; line-height: 1.5; }
+  .textbox { padding: .25rem 0 0.5rem; font-size: 0.8rem; line-height: 1.5; }
 
   /* Subsection header */
   .subsection-header {
-    font-weight: 700; font-size: 0.9rem; line-height: 1.4;
-    padding: 1rem 0 0.5rem; margin: 0 0 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.9);
+    font-weight: 700; font-size: 0.8rem; line-height: 1.4;
+    padding: 1rem 0 0.5rem; margin: 0 0 0rem; border-bottom: 1px solid rgba(0,0,0,0.9);
   }
 
   /* Course block */
   .course { display: block; max-width: 900px; margin: 0 auto; }
   .course-intro { margin: .5rem 0 1rem; }
-  .course-intro p { margin: 0 0 .6rem; line-height: 1.55; }
+  .course-intro p { margin: 0 0 .5rem; line-height: 1.55; }
 
   /* Week cards and media */
-  .weeks { display: grid; gap: 0.9rem; padding: 0; margin: 0; list-style: none; }
+  .weeks { display: grid; gap: 0.8rem; padding: 0; margin: 0; list-style: none; }
   .week {
     width: 70%;
     margin: 0 auto 1.5rem;
@@ -121,21 +122,21 @@
 
   /* --- VISUAL EXPERIMENTS --- */
   #details-4 .ve-right { display: flex; flex-direction: column; gap: 0rem; }
-  #details-4 .experiment-textbox { padding: 0rem 0; }
+  #details-4 .experiment-textbox {font-size:0.8rem; padding: 0rem 0; }
   #details-4 .ve-top-images { display: flex; gap: 0; align-items: center; height: 300px; margin: 0; padding-bottom: 0; }
   #details-4 .ve-top-images img { width: 33.3333%; height: 100%; object-fit: contain; margin: 0; display: block; min-width: 0; padding-bottom: 0; }
-  #details-4 .ve-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid var(--rule); padding-top: 0rem; padding-bottom: 2rem; }
+  #details-4 .ve-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 0px solid var(--rule); padding-top: 0rem; padding-bottom: 2rem; }
   #details-4 .ve-left-col { display: grid; grid-template-rows: auto auto; gap: 0rem; }
   #details-4 .ve-carousel-2x2 { display: grid; grid-template-columns: 2fr 2fr; gap: 0rem; }
   #details-4 .ve-carousel-2x2 img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
   #details-4 .ve-right-col { display: flex; flex-direction: column; gap: .55rem; align-items: flex-end; }
   #details-4 .ve-right-col img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; display: block; }
-  #details-4 .ve-right .ve-text:not(:last-of-type) { border-bottom: 1px solid var(--rule); padding-bottom: 0rem; margin-bottom: 1.1rem; }
+  /* #details-4 .ve-right .ve-text:not(:last-of-type) { border-bottom: 0px solid var(--rule); padding-bottom: 0rem; margin-bottom: 1.1rem; } */
 
   /* exp1/exp2/exp3 three-up */
-  #details-4 .ve-three-images{ width: 100%; display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: .75rem; padding-top: 2rem; justify-content: center; }
+  #details-4 .ve-three-images{ width: 100%; display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: .75rem; padding-top: 0rem; justify-content: center; }
   #details-4 .ve-three-images img, #details-4 .ve-right-col img, #details-4 .ve-top-images img { border-radius: 0 !important; box-shadow: none; }
-  .ve-three-images img { width: 100%;  object-fit: contain; display: block; border-radius: 0px; }
+  .ve-three-images img { width: 100%;  object-fit: contain; display: block; border-radius: 0px;}
 
   /* Force bold weight for strong/b elements */
   strong, b { font-weight: 700 !important; }
@@ -159,15 +160,15 @@
     font-size: 1.1; line-height: 1.35; white-space: normal;
   }
   .exp-structure strong { display: inline-block; color:#435abe; font-size: 13px; }
-  .exp-structure p { margin: 0rem 0;font-size: 13px;  }
-  .exp-structure li { margin: 0rem 0;font-size: 13px;  }
+  .exp-structure p { margin: 0rem 0;font-size: 0.7rem;  }
+  .exp-structure li { margin: 0rem 0;font-size: 0.7rem;  }
   /* VISUAL EXPERIMENTS – 3-up gallery leak fix */
 #details-4 .ve-three-images{
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(220px, 1fr));
   gap: .75rem;
-  padding-top: 2rem;
+  padding-bottom: 2rem;
   justify-content: center;
   box-sizing: border-box;
 
@@ -200,6 +201,9 @@
   height: auto;
 }
 
+li {list-style-position: inside;
+}
+
 /* lecture13 & lecture14 styling */
 .course > img[src$="lecture13.png"],
 .course > img[src$="lecture14.png"] {
@@ -217,7 +221,7 @@
   content: "Sample Slides";
   display: block;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
 
@@ -256,8 +260,9 @@
       <p>
         I'm a San Francisco-based data scientist, creative technologist, and yoga teacher.
         <br><br>
-        For nine years, I’ve designed and led causal inference, large-scale data analysis, and AI explainability projects at Amazon Web Services and Gap, 
-        working end-to-end from experimental design to deployment in production systems.  I also completed an artistic residency at the Gray Area Foundation for the Arts, where I built interactive, data-driven installations, and have taught at institutions like Google, MUTEK, and Salesforce. This past year, I have been on a career sabbatical to independently study philosophy, AI ethics, and philosophy of mind.
+        For nine years, I’ve led large-scale data analysis, data visualization, AI & ML explainability projects at Amazon Web Services and Gap, 
+        working end-to-end from design to deployment in production systems.  I also completed an artistic residency at the Gray Area Foundation for the Arts, where I built interactive, data-driven installations, and have taught at institutions like Google, MUTEK, and Salesforce. 
+        This past year, I have been on a career sabbatical to independently study philosophy, AI ethics, and philosophy of mind.
         <br><br>
         My understanding of the world is shaped by years of teaching gentle, yin, and restorative yoga. This practice has taught me to deliberately shift my awareness between mind and body, navigating the states needed for coding, writing, teaching, or making art; and giving form to what I find.
         <br><br>
@@ -280,13 +285,13 @@
 
 <!-- WRITING & TEACHING -->
 <details id="details-3">
-  <summary>WRITE-UPS & TEACHING SAMPLES</summary>
+  <summary>WRITINGS & TEACHING SAMPLES</summary>
   <div class="details-content-wrapper">
     <div class="platonic"><canvas id="three-canvas-3"></canvas></div>
     <div class="content">
-      <p><strong>Below are selected works from my Substack, blog, and course designs that show how I translate abstract ideas into clear inquiries and applications.</strong></p>
+      <p>Selected works from my Substack, yoga classes, and course designs that illustrate how I translate abstract ideas into clear applications.</p>
 
-      <div class="subsection-header">Write-ups</div>
+      <div class="subsection-header">Essays</div>
       <p class="textbox">
         These excerpts are adapted from my Substack posts and presented here as conceptual experiments. 
         Three of these concepts (1.1, 1,2 &amp; 1.3) are implemented as test designs for illustration purposes.
@@ -395,7 +400,7 @@
 
       <!-- Group 2 -->
       <h4 class="subsection-header" style="border-bottom:none; padding-top:.75rem;">2. Other Notes</h4>
-      <p>Broader notes on alignment, attention, and co-regulation beyond the mat.</p>
+      <p>Broader consciousness notes on Substack.</p>
 
       <details>
         <summary>2.1 — Boundary Dissolve</summary>
@@ -435,7 +440,7 @@
 
       <!-- Courses -->
       <div class="subsection-header">Course &amp; Workshop Designs</div>
-      <p>The following samples are taken from relevant courses I fully designed and instructed. More class curriculums & talks are available upon request.</p>
+      <p>The following samples are taken from relevant courses I designed and instructed. More class curriculums & talks are available upon request.</p>
 
       <details class="course">
         <summary><strong>Artificial Intelligence &amp; Creativity, (DDI Akademi, March 2024)</strong></summary>
@@ -486,9 +491,9 @@
         <div class="course-row">
           <div class="course-text">
             <p>
-              This hands-on intensive focused on building interactive environments from real-world signals. 
-              Students captured physical data such as accelerometer motion, touch, pressure, proximity, and audio levels,and converted it into meaningful interactions. 
-              The class provided examples to scale from small sketches to immersive, room-scale environments.
+              This intensive course focused on creating interactive environments. 
+              Students learned to capture physical data such as motion, touch, pressure, proximity, and audio levels
+              and convert it into interactions and custom visuals. The course provided examples ranging from small-scale prototypes to immersive, high-production environments.
             </p>
           </div>
           <div class="course-image"><img src="lecture3.jpg" alt="Lecture 3"></div>
@@ -501,8 +506,12 @@
         <summary><strong>Artist Talks (MUTEK, Google Art Week, 2020 - 2021)</strong></summary>
         <div class="course-row">
           <div class="course-text">
-            <p>My artist talks explore the non-linear use of mediums and how to create cohesive narratives across them. 
-              My work in this area has been featured at New Art City, MUTEK 2020 and Google Art Week 2021.</p>
+            <p>My artist talks over years centered on two key areas:
+              <li>Abstract art / data visualization with software</li>
+              <li>Creating cohesive narratives and clear signals across various mediums, 
+                which is a core part of my process since I use many different tools to make my work.</li>
+              <br>
+              These works have been featured at New Art City, MUTEK 2020 and Google Art Week 2021.</p>
           </div>
           <div class="course-image">
             <img src="lecture4.png" alt="Lecture 4">
@@ -522,7 +531,7 @@
               This course traced the evolution of data visualization, from historical tables and maps to contemporary web-based systems.
               Interaction was treated as an encoding, where controls, views, and feedback loops became an integral part of how meaning was made.
               The curriculum was divided into two parts:
-              <br>Part I (Theory) built a mental model—history, ethics, information architecture, narrative structure, data types, and visual encodings.
+              <br>Part I (Theory): ethics, information architecture, narrative structure, data types, and visual encodings.
               <br>Part II (Practice) translated those models into running systems with Python, Plotly, and Dash.
             </p>
           </div>
@@ -541,10 +550,9 @@
 
     <div class="ve-right">
         <div class="experiment-textbox ve-text">
-        <p>
-          <strong>Below are selected visual experiments that explore abstraction, creative constraints, and form through computation.</strong>
-          <br>
-          </br>
+        <p style="border-bottom: 1px solid #262525; padding-bottom: 8px;">
+          Selected visual experiments that explore abstraction, creative constraints, and form through computation.</p>
+          <p>
           Traditional software often produces abstract patterns detached from physicality. My explorations ask the reverse: can computation embody softness, intuition, or ambiguity?
           I work across p5.js, Processing, TouchDesigner, Maya and prompting to test how algorithms can create forms that feel "alive".
           My goal is to move beyond cold abstraction toward experiences that feel embodied and spatially present.
@@ -583,20 +591,16 @@
         </div>
       </div>
 
+      <div class="experiment-textbox ve-text">
+        <p>
+          Prompting is my least abstract way of working with computation. It's a process of curation, not creation from scratch; I look for an output that evokes a feeling I can empathize with, sensing the moment it shifts from randomness of diffusion models to something with a presence.
+          I set the intent through prompting, and final expression comes from choosing the most resonant output. 
+          This boundary negotiation is more extensive than with traditional tools because the generative process is less abstracted. </p>
+      </div>
       <div class="ve-three-images">
         <img src="exp1.jpg" alt="exp1" />
-        <img src="exp2.jpg" alt="exp2" />
-        <img src="exp3.jpg" alt="exp3" />
-      </div>
-
-      <div class="experiment-textbox ve-text">
-        <br>
-        <p>
-          Prompting for me, is the least abstract way to work with computation.  It's a process of curation, not creation from scratch, sitting just beyond raw code or pixels.
-           During creation, I look for the output that carries a feeling I can empathize with, sensing when it shifts from code to something with presence. 
-           In this process, I set the intent with prompting and <strong> choosing the most resonant output </strong> becomes the expression. 
-           This negotiation of boundaries is more extensive than with traditional tools, because the AI carries its own "pre-existing intelligence".
-        </p>
+        <img src="exp3.jpg" alt="exp2" />
+        <img src="exp2.jpg" alt="exp3" />
       </div>
     </div>
   </div>
