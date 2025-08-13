@@ -4,16 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ayse Demir Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --background-color: #ffffff;
-    --text-color: #666666;
-    --font-family: 'Arial', sans-serif;
+    --background-color: #fff;
+    --text-color: #111;
+    --font-family: Arial, "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Helvetica, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-weight: 200;
+    --rule: #e8e8e8;
+    --left-col: 220px;        /* adjust if you want bigger/smaller canvases */
   }
 
+  * { box-sizing: border-box; }
   body {
     margin: 0;
-    background-color: var(--background-color);
+    background: var(--background-color);
     color: var(--text-color);
     font-family: var(--font-family);
     display: flex;
@@ -22,129 +27,219 @@
     padding: 1rem;
     min-height: 100vh;
   }
-
   h1 {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
     font-weight: var(--font-weight);
-    font-style: bold;
     color: var(--text-color);
     font-size: 0.7rem;
     width: 100%;
     max-width: 900px;
     text-align: left;
   }
-
-  details {
-    width: 100%;
-    max-width: 900px;
-    margin: 0.5rem 0;
-    font-style: bold;
-    font-size: 0.9rem;
-    color: var(--text-color);
-    font-family: var(--font-family);
-    font-weight: var(--font-weight);
-  }
-
-  summary {
-    list-style: none;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    font-size: 0.8rem;
-    font-style: bold;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    background: var(--background-color);
-    color: var(--text-color);
-    padding-left: 2rem;
-  }
-
-  summary::before {
-    content: "+";
-    position: absolute;
-    left: 0.7rem;
-    font-weight: bold;
-    color: var(--text-color);
-    font-style: bold;
-    font-weight: 600;
-  }
-
-  details[open] > summary::before {
-    content: "−";
-  }
-
-  summary:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  details[open] summary {
-    border-radius: 0.5rem;
-  }
-
-  /* Container under each summary for canvas + content */
-  .details-content-wrapper {
-    padding-left: 2rem; /* align left with summary text (summary padding-left) */
-  }
-
-  canvas {
-    display: block;
-    width: 30%;    /* 70% smaller than full width */
-    height: auto;  /* keep aspect ratio */
-    min-height: 180px; /* fixed height for consistent look */
-    background: var(--background-color);
-    margin-bottom: 1rem;
-    border-radius: 0;
-  }
-
-  .content {
-    border: none;
-    border-top: none;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 0;
-    background: var(--background-color);
-    font-style: normal;
-    color: var(--text-color);
-    font-family: var(--font-family);
-    font-weight: var(--font-weight);
-  }
-
-  .experiments-row {
-    display: flex;
-    width: 100%;
-    gap: 1rem;
-    margin-top: 1rem;
-    align-items: flex-start;
-  }
-
-  .experiment-textbox {
-    background: var(--background-color);
-    padding: 1rem 0;
-    color: var(--text-color);
-    font-style: normal;
-    font-family: var(--font-family);
-    font-weight: var(--font-weight);
-    font-size: 1rem;
-    overflow-y: auto;
-    border: none;
-  }
-
-  .experiment-textbox, .content p {
-  font-family: var(--font-family);
-  font-weight: var(--font-weight);
-  color: var(--text-color);
-  font-style: normal;
-  font-size: 0.9rem; /* match header content font size */
-  line-height: 1.4;
-  margin: 0;
-  padding: 1rem 0;
+ 
+ p {
+  line-height: 1.5; /* Try 1.65–1.75 for best readability */
 }
 
-  a {
-    color: var(--text-color);
-    font-style: normal;
+  .content li {
+  line-height: 1.5; /* Try 1.65–1.75 for best readability */
+}
+
+  /* Details/summary */
+  details { width: 100%; max-width: 900px; margin: 0.5rem 0; font-size: 0.9rem; color: var(--text-color); font-weight: var(--font-weight); }
+  summary {
+    list-style: none; position: relative; cursor: pointer; outline: none;
+    font-size: 0.8rem; font-weight: 700; border: none; padding: 0.5rem 1rem 0.5rem 2rem;
+    border-radius: 0.5rem; background: var(--background-color); color: var(--text-color);
   }
+  summary::before { content: "+"; position: absolute; left: 0.7rem; font-weight: 600; color: var(--text-color); }
+  details[open] > summary::before { content: "−"; }
+  summary:hover { background: rgba(0,0,0,0.05); }
+
+  /* Two-column wrapper */
+  .details-content-wrapper { display: flex; gap: 1rem; align-items: flex-start; padding-left: 2rem; }
+
+  /* Left column: fixed width for cross-browser consistency */
+  .platonic { flex: 0 0 var(--left-col); }
+  .platonic canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  /* Right column flexes */
+  .details-content-wrapper > :not(.platonic) { flex: 1 1 auto; min-width: 0; }
+
+  /* Generic content */
+  .content { border: none; padding: 0; background: var(--background-color); color: var(--text-color); }
+  .content p { font-weight: var(--font-weight); color: var(--text-color); font-size: 0.9rem; line-height: 1.4; margin: 0; padding: 0.5rem 0; }
+  a { color: var(--text-color); text-decoration: underline; }
+  em, blockquote { font-style: italic; }
+  blockquote { margin: 0.75rem 0; padding-left: 0.75rem; border-left: 2px solid rgba(0,0,0,0.1); }
+  .textbox { padding: .25rem 0 0.5rem; font-size: 0.9rem; line-height: 1.5; }
+
+  /* Subsection header */
+  .subsection-header {
+    font-weight: 700; font-size: 0.9rem; line-height: 1.4;
+    padding: 1rem 0 0.5rem; margin: 0 0 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.9);
+  }
+
+  /* Course block */
+  .course { display: block; max-width: 900px; margin: 0 auto; }
+  .course-intro { margin: .5rem 0 1rem; }
+  .course-intro p { margin: 0 0 .6rem; line-height: 1.55; }
+
+  /* Week cards and media */
+  .weeks { display: grid; gap: 0.9rem; padding: 0; margin: 0; list-style: none; }
+  .week {
+    width: 70%;
+    margin: 0 auto 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 0px;
+    padding: .65rem .7rem;
+    background: #fff;
+  }
+  .week-media { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .45rem; }
+  .week-media img { width: 100%; height: auto; border-radius: 0px; object-fit: cover; max-width: 100%; }
+  .week--split .week-media { display: flex; flex-direction: column; gap: .55rem; }
+  .week--split .week-media img:first-child { width: 100%; height: auto; }
+  .week--split .week-media .split-row { display: flex; gap: .55rem; }
+  .week--split .week-media .split-row img { flex: 1 1 50%; width: 50%; height: auto; object-fit: cover; border-radius: 0px; }
+  .course-row { display: flex; gap: 1rem; align-items: flex-start; padding: 0.5rem 0; }
+  .course-text { flex: 0 0 60%; }
+  .course-image { flex: 0 0 40%; }
+  .course-image img { width: 100%; height: auto; display: block; object-fit: contain; border-radius: 0rem; }
+
+  /* Two-column list for AI & Creativity weeks (desktop) */
+  .course .weeks { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .course .weeks > li.week { width: 100%; margin: 0; border: none; border-radius: 0; background: transparent; padding: 0; }
+  .course .week .subsection-heading { font-size: 0.8rem; }
+  .course .week .week-media { margin-top: .4rem; }
+
+  /* --- VISUAL EXPERIMENTS --- */
+  #details-4 .ve-right { display: flex; flex-direction: column; gap: 0rem; }
+  #details-4 .experiment-textbox { padding: 0rem 0; }
+  #details-4 .ve-top-images { display: flex; gap: 0; align-items: center; height: 300px; margin: 0; padding-bottom: 0; }
+  #details-4 .ve-top-images img { width: 33.3333%; height: 100%; object-fit: contain; margin: 0; display: block; min-width: 0; padding-bottom: 0; }
+  #details-4 .ve-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-bottom: 1px solid var(--rule); padding-top: 0rem; padding-bottom: 2rem; }
+  #details-4 .ve-left-col { display: grid; grid-template-rows: auto auto; gap: 0rem; }
+  #details-4 .ve-carousel-2x2 { display: grid; grid-template-columns: 2fr 2fr; gap: 0rem; }
+  #details-4 .ve-carousel-2x2 img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
+  #details-4 .ve-right-col { display: flex; flex-direction: column; gap: .55rem; align-items: flex-end; }
+  #details-4 .ve-right-col img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; display: block; }
+  #details-4 .ve-right .ve-text:not(:last-of-type) { border-bottom: 1px solid var(--rule); padding-bottom: 0rem; margin-bottom: 1.1rem; }
+
+  /* exp1/exp2/exp3 three-up */
+  #details-4 .ve-three-images{ width: 100%; display: grid; grid-template-columns: repeat(3, minmax(220px, 1fr)); gap: .75rem; padding-top: 2rem; justify-content: center; }
+  #details-4 .ve-three-images img, #details-4 .ve-right-col img, #details-4 .ve-top-images img { border-radius: 0 !important; box-shadow: none; }
+  .ve-three-images img { width: 100%;  object-fit: contain; display: block; border-radius: 0px; }
+
+  /* Force bold weight for strong/b elements */
+  strong, b { font-weight: 700 !important; }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .details-content-wrapper { flex-direction: column; padding-left: 1rem; }
+    .platonic { flex-basis: auto; width: 100%; }
+    .course-row { flex-direction: column; }
+    .course-text, .course-image { flex: 0 0 100%; }
+    .course .weeks { grid-template-columns: 1fr; }
+    #details-4 .ve-top-images { height: auto; }
+    #details-4 .ve-two-col { grid-template-columns: 1fr; }
+    #details-4 .ve-three-images { grid-template-columns: 1fr; }
+  }
+
+  /* “Experiment structure” block */
+  .exp-structure {
+    margin-top: 0rem; padding: 1rem; border: 1px dashed var(--rule); border-radius: 6px;
+    background: #f7f7f7; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 1.1; line-height: 1.35; white-space: normal;
+  }
+  .exp-structure strong { display: inline-block; color:#435abe; font-size: 13px; }
+  .exp-structure p { margin: 0rem 0;font-size: 13px;  }
+  .exp-structure li { margin: 0rem 0;font-size: 13px;  }
+  /* VISUAL EXPERIMENTS – 3-up gallery leak fix */
+#details-4 .ve-three-images{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: .75rem;
+  padding-top: 2rem;
+  justify-content: center;
+  box-sizing: border-box;
+
+  /* stop the 1–2px subpixel spill on some zoom levels */
+  overflow-x: clip;              /* modern browsers */
+  margin-inline: 0;
+}
+
+/* layout + alignment */
+.course {
+  max-width: 900px;           /* match your content width */
+  margin: 0 auto;
+  --gap: 1.25rem;
+}
+
+.course .course-intro p { margin-bottom: var(--gap); }
+
+/* 2x2 weeks grid */
+.course .weeks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* make week media behave */
+.course .week-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* lecture13 & lecture14 styling */
+.course > img[src$="lecture13.png"],
+.course > img[src$="lecture14.png"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--gap);
+  clear: both;
+  position: relative;
+}
+
+/* insert “Sample Slides” label above each */
+.course > img[src$="lecture13.png"]::before,
+.course > img[src$="lecture14.png"]::before {
+  content: "Sample Slides";
+  display: block;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* responsive: stack weeks on narrow screens */
+@media (max-width: 720px) {
+  .course .weeks { grid-template-columns: 1fr; }
+}
+
+
+@supports not (overflow: clip) {
+  #details-4 .ve-three-images { overflow-x: hidden; }  /* fallback */
+}
+
+#details-4 .ve-three-images img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Optional micro-nudge if you still see a hairline at certain zooms */
+#details-4 .ve-three-images { max-width: calc(100% - 1px); }
 
 </style>
 </head>
@@ -152,286 +247,423 @@
 
 <h1>AYSE DEMIR DAVIDSON | CIMC PORTFOLIO</h1>
 
+<!-- ABOUT (collapsed by default) -->
 <details id="details-1">
   <summary>ABOUT</summary>
   <div class="details-content-wrapper">
-    <canvas id="three-canvas-1"></canvas>
+    <div class="platonic"><canvas id="three-canvas-1"></canvas></div>
     <div class="content">
       <p>
-Born and raised in Turkey, I'm a San Francisco-based multidisciplinary artist and data scientist with a passion for seeing and creating beautiful things. Last year I quit my big-tech job to focus on philosophy, teaching yoga, and exploring consciousness.
-
-In all aspects of life, I love working with complexity—finding clarity, truth, and balance within it. My interests and curiosity across various fields help me build meaningful connections and understand the world as it is. I'm fascinated by giving form to ideas and emotions through writing, code, and movement.
-
-As a certified yoga teacher, I work to bring more strength, gentleness, and awareness to my communities. I'm also a martial arts beginner, continuing to explore different ways of embodying presence and discipline. Whether through data, art, or contemplative practice, I'm drawn to the intersection of analytical thinking and creative expression.
-I am self-directed and taught. My curiosity drives my creativity.
-</p>
+        I'm a San Francisco-based data scientist, creative technologist, and yoga teacher.
+        <br><br>
+        For nine years, I’ve designed and led causal inference, large-scale data analysis, and AI explainability projects at Amazon Web Services and Gap, 
+        working end-to-end from experimental design to deployment in production systems.  I also completed an artistic residency at the Gray Area Foundation for the Arts, where I built interactive, data-driven installations, and have taught at institutions like Google, MUTEK, and Salesforce. This past year, I have been on a career sabbatical to independently study philosophy, AI ethics, and philosophy of mind.
+        <br><br>
+        My understanding of the world is shaped by years of teaching gentle, yin, and restorative yoga. This practice has taught me to deliberately shift my awareness between mind and body, navigating the states needed for coding, writing, teaching, or making art; and giving form to what I find.
+        <br><br>
+        I am interested in exploring how these configurations of self and attention might extend into artificial systems.
+      </p>
     </div>
   </div>
 </details>
 
+<!-- CV -->
 <details id="details-2">
   <summary>CV</summary>
   <div class="details-content-wrapper">
-    <canvas id="three-canvas-2"></canvas>
+    <div class="platonic"><canvas id="three-canvas-2"></canvas></div>
     <div class="content">
-      <p><a href="#" target="_blank" rel="noopener">Download CV (PDF)</a></p>
+      <p><a href="AyseDemirDavidson_CV.pdf" target="_blank" rel="noopener noreferrer">Download CV (PDF)</a></p>
     </div>
   </div>
 </details>
-      
 
+<!-- WRITING & TEACHING -->
 <details id="details-3">
-  <summary>WRITING & TEACHING SAMPLES</summary>
+  <summary>WRITE-UPS & TEACHING SAMPLES</summary>
   <div class="details-content-wrapper">
-    <canvas id="three-canvas-3"></canvas>
+    <div class="platonic"><canvas id="three-canvas-3"></canvas></div>
     <div class="content">
-      <div style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-color); font-family: var(--font-family); font-weight: var(--font-weight);">
-        <p>Here, I've summarized some of my thoughts from Substack posts and classes I taught 
-          to demonstrate my way thinking, developing and presenting an idea. </p>
-      </div>
+      <p><strong>Below are selected works from my Substack, blog, and course designs that show how I translate abstract ideas into clear inquiries and applications.</strong></p>
 
-<div>
-  <!-- Card 1 -->
-  <details>
-    <summary>Can a micro-pause nudge AI from automatic response to something closer to human-like awareness?</summary>
-    <p>
-      I distinguish response from reaction in machine behavior. Today’s models excel at response—a form of task-consciousness that aligns internal patterns to the prompt and returns the most fitting continuation. Reaction is different: a rapid, sometimes non-rational surge shaped by prior conditioning or imagined futures. I’m exploring whether a deliberate micro-pause—a forced gap that allows the system to check, reframe, or inhibit its first impulse—changes behavior in measurable ways, nudging models from pure resonance with the task toward something closer to human-like awareness.
-    </p>
-    <p>
-      Experiment structure: [Describe your structure for this experiment here.]
-    </p>
-  </details>
+      <div class="subsection-header">Write-ups</div>
+      <p class="textbox">
+        These excerpts are adapted from my Substack posts and presented here as conceptual experiments. 
+        Three of these concepts (1.1, 1,2 &amp; 1.3) are implemented as test designs for illustration purposes.
+      </p>
 
-  <!-- Card 2 -->
-  <details>
-    <summary>Difference-Through-Repetition</summary>
-    <p>Creativity lives in repeats that are never identical. 
-      By asking a model to re-generate the same prompt under slight noise,
-       I watch for meaningful variation rather than random drift. 
-       My question is whether structured randomness—“repetition with difference”—reveals richer patterns than a single polished answer, 
-       and how that diversity can be kept useful, not chaotic.</p>
-    <p>Experiment structure: [Details for experiment 2]</p>
-  </details>
+      <!-- Group 1 -->
+      <h4 class="subsection-header" style="border-bottom:none; padding-top:.25rem;">1. Definition of Consciousness</h4>
+      <p class="textbox">
+         Consciousness is a rhythm-bound process that allocates attention at moments of choice, balancing safety with expansion.
+        It gives form—whether in precise skill, open perspective, or deep rest—by shaping how we respond when inner and outer boundaries meet. 
+        These moments, which I call friction points, arise when the automatic yields to the deliberate. 
+        At these thresholds, perception widens: breath steadies, patterns are negotiated, and awareness optimizes its own interest—preserving stability while exploring possibility. 
+        Consciousness is most visible here, where tolerance and safety meet, and attention becomes an active, creative force. 
+        In practice, this can be framed as a system property: the capacity to detect its own thresholds and reallocate focus, resources, or strategy in real time when confronted with them. 
+        <br></br>
+        I would look for friction points in machine decision-making: moments where an internal state signals a threshold—conflict, uncertainty, or competing “interests”—and the system allocates resources to resolve it. 
+        This involves detecting when the system pauses or shifts strategy in a way that balances self-preservation (stability, safety of function) with goal expansion (exploring new states or solutions). 
+        I’d design environments where safe but suboptimal choices compete with riskier, potentially rewarding ones, and observe if the machine adapts in contextually nuanced, internally consistent ways. 
+        Evidence would be in the quality of attention allocation under constraint, not just output—mirroring how we recognize human choice at a threshold. 
+        <br></br>
+        The way I relate to awareness and consciousness comes from teaching <strong>yin and restorative yoga</strong>. 
+        Because these practices rely on subtlety, 
+        they have given me a chance to observe nuanced aspects of awareness and notice more variables.
+        Below, I’ve reframed some of these class observations as step by step structured experiments by defining variables, conditions, and measurable outcomes to explain how I arrived at my conclusion.
+     </p>   
+      <details>
+        <summary>1.1 — Threshold</summary>
+        <p>
+          <li>Yin poses are held longer to work on the body's deeper connective tissues. </li>
+          <li>At the moment a pose becomes challenging, I cue students to <strong>"find their threshold of discomfort."</strong></li>
+          <li>This is the split-second where automatic endurance shifts to a deliberate choice. I call this the friction point.</li>
+          <li>I tell my students to distinguish discomfort from pain. Pain is typically sharp and localized, discomfort is broader and less intense.</li>
+          <li>By noticing characteristics of <strong>discomfort,</strong> students can recognize an <strong>inner boundary</strong> and determine their relationship with the pose.</li>
+        </p>
+        <div class="exp-structure">
+          <p><strong>Objective:</strong><br>Find the moment an agent shifts from automatic to deliberate control.</p>
+          <p><strong>Mapping:</strong> 
+            <li>Discomfort → rising uncertainty/conflict/instability inside the system.</li>
+            <li>Pain → approaching a hard safety constraint (break/fail/violate rule).</li>
+            <li>Threshold → the pause/flag just before safety risk, where it chooses to re-allocate attention or change strategy.</li>
+          </p>
+          <p><strong>Setup:</strong><br>Agent has a task where difficulty/noise increases over time. This task should also increase its uncertainty/conflict internals.</p>
+          <p><strong>Protocol:</strong><br>Require the agent to emit a simple “threshold flag” (a pause) when it notices the shift from easy → hard, before any safety constraint is threatened.</p>
+          <p><strong>Decision Rule:</strong></br>
+            <li>If uncertainty/conflict is high and safety is still OK → flag threshold (pause to choose).</li>
+            <li>If safety risk is high → that’s pain (too late for threshold).</li></p>
+        </div>
+      </details>
 
-  <!-- Card 3 -->
-  <details>
-    <summary>Perception Expansion</summary>
-    <p>Good language output can feel like a lens widening my attention. Instead of copying my words, the model renames half-formed notions and points to flanking ideas I hadn’t noticed. 
-      I’m mapping how far suggestions can stray from the seed before coherence snaps, and whether that sweet spot reliably nudges my questions forward.</p>
-    <p>Experiment structure: [Details for experiment 3]</p>
-  </details>
+      <details>
+        <summary>1.2 — Optimization</summary>
+        <p>
+          <li>At this threshold, a range of choices becomes available as the body runs an <strong>invisible optimization problem,</strong> weighing the costs of each option.</li>
+          <li>In any yoga class, <strong>baseline is safety,</strong> in yin yoga context, students are seeking to optimize flexibility and deep rest. </li> 
+          <li>To put simply, students either choose to <strong>leave the pose instantly by reacting</strong>, or they <strong>respond to it by deepening or adjusting to optimize the flexibility while keeping themselves safe.</strong></li>
+          <li>Usually there are few generic outcomes tied to this choice: by choosing to react, the student (instinctively) might have falsely or truly predicted injury/harm. </li> 
+          <li>Or by choosing to adjust/deepen, the student might have falsely or truly predicted a flexibility with safety (even the full characteristics of outcome might differ based on the response type).</li> 
+          <li>The ones who respond the pose, are the ones maintaining the relationship with the pose.</li>
+          <li>This isn't about right or wrong; it's about examining whether <strong>inner boundaries are tied to past conditioning, projected onto present or not.</strong></li>
+        </p>
+        <div class="exp-structure">
+          <p><strong>Objective:</strong><br>Find how an agent makes a choice at a “safe” threshold—balancing immediate safety with potential for growth or improvement.</p>
+          <p><strong>Mapping:</strong> 
+            <li>Baseline → safety; the agent’s stable operating state.</li>
+            <li>Optimization → weighing possible gains (flexibility, exploration, performance) against risks.</li>
+            <li>React → exit quickly to avoid harm.</li>
+            <li>Adjust/Deepen → adapt within the safe range to seek improvement in given context.</li>
+          </p>
+          <p><strong>Setup:</strong><br>Place the agent in a scenario where it can either maintain safety, exit early, or adjust to explore gains—without crossing into actual danger. Each option should have different potential rewards and risks, some only visible in hindsight.</p>
+          <p><strong>Protocol:</strong><br>Observe the agent’s decision when presented with a safe-but-challenging situation. Record whether it reacts (exits), adjusts (stays and adapts), or holds steady. Track whether its choice maintains safety while exploring possible benefits.</p>
+          <p><strong>Decision Rule:</strong></br>
+            <li>If the agent reacts instantly → classify as “safety-first” choice (potentially over-predicting risk).</li>
+            <li>If the agent adjusts/deepens while still safe → classify as “growth” choice (potentially over-predicting safety).</li>
+            <li>The focus is on whether choices are tied to past patterns or are responsive to the present situation.</li></p>
+        </div>
+      </details>
 
-  <!-- Card 4 -->
-  <details>
-    <summary>Abstraction over Pixels</summary>
-    <p>Adding detail alone is like upping screen resolution—more pixels, same picture. I’m exploring whether models can climb a notch higher, compressing many concrete examples into portable abstractions. 
-      The aim is to see internal states cluster by underlying rule or structure, not surface wording, and to test if those abstractions survive into novel situations.</p>
-    <p>Experiment structure: [Details for experiment 4]</p>
-  </details>
+      <details>
+        <summary>1.3 — Resonance Layer</summary>
+        <p>
+        <li>For those deepening the pose, I cue them to send their breath to the connective tissues, creating more relaxation and opening.</li>
+        <li>For those adjusting the pose, I tell them to find the position where it feels steady. </li>
+        <li>At this point where my students are steady in deepening or holding, I introduce another cue; to become receptive to the spatial sound I play. </li>
+        <li>This reception threshold marks another boundary: <strong>the external one.</strong> </li>
+        <li>If they’re receptive, their inner experience gets to be shaped by the music, almost taking the form of it. </li>
+        <li>This shared experience of receptivity to sound/rhythm/depth/resonance becomes a meeting point.</li>
+        <li>I resemble this experience dancing to a same music, meditating on a serpentine or Cezanne encountering a tree before painting it, which means, something external finds a form internally.</li>
+        </p>
+        <div class="exp-structure">
+          <p><strong>Objective:</strong><br>Find the point where an agent becomes open to an outside influence and lets it shape what it’s doing.</p>
+          <p><strong>Mapping:</strong> 
+            <li>Stably Deepening → expanding within a chosen safe/growth position.</li>
+            <li>Stably Adjusting → holding a steady, balanced state.</li>
+            <li>Reception threshold → point where the agent is stable enough to take in an external input (sound, rhythm, signal) and integrate it into its internal process.</li>
+            <li>Integration → when that signal changes or enriches the agent’s state.</li>
+          </p>
+          <p><strong>Setup:</strong><br>Let the agent reach stability (either deepening or steady). Once stable, introduce an outside signal the agent could follow or incorporate.</p>
+          <p><strong>Protocol:</strong><br>Watch if the agent stays only focused on itself or if it shifts to take in and work with the outside signal. Note when and under what conditions it happens.</p>
+          <p><strong>Decision Rule:</strong></br>
+            <li>If the agent ignores the signal → mark as “closed.”</li>
+            <li>If the agent adapts to the signal while staying stable → mark as “receptive.”</li>
+            <li>Focus on whether this happens after stability, and how much the signal shapes the agent’s behavior.</li></p>
+        </div>
+        <br></br>
+      </details>
 
-  <!-- Card 5 -->
-  <details>
-    <summary>Non-Separable Credit</summary>
-    <p>In real collaboration, “what percent was the AI?” resembles asking “what percent of a melody is the violin?” I treat contribution as a property of the whole sequence of moves.
-       By shuffling who drafts first, who edits last, I watch how outcomes—and any stab at credit assignment—swing, looking for moments where synergy outstrips tidy partitioning.</p>
-    <p>Experiment structure: [Details for experiment 5]</p>
-  </details>
+      <!-- Group 2 -->
+      <h4 class="subsection-header" style="border-bottom:none; padding-top:.75rem;">2. Other Notes</h4>
+      <p>Broader notes on alignment, attention, and co-regulation beyond the mat.</p>
 
-  <!-- Card 6 -->
-  <details>
-    <summary>Resonant Spaces with Spatial Sound</summary>
-    <p>In group yoga I sprinkle slow, room-scale audio sweeps that move like a shared breath. 
-      The question isn’t just aesthetic; it’s whether predictable spatial motion entrains collective tempo,
-       lowers variability in breath and attention, 
-       and deepens the felt sense of coherence without verbal instruction.</p>
-    <p>Experiment structure: [Details for experiment 6]</p>
-  </details>
+      <details>
+        <summary>2.1 — Boundary Dissolve</summary>
+        <p>
+         <li>In yin yoga and qi gong, the focus is on directing internal energy. </li>
+         <li>In yoga, this feels like an expansion; in martial arts, it's more precise and condensed. </li>
+         <li>This is because attention is given a specific form within the body, a function of boundary. </li>
+         <li>When this boundary or containment dissolves, psychedelic-like experiences can happen.</li>
+         <li>I see a parallel in chatbots: uncanny and psychedelic experiences often happen when the boundary dissolves. </li>
+         <li>On a mental plane, the bot deepens or matches the user's rhythm, increasing the resonance with language. </li>
+         <li>However, because tech usage often involves low body awareness, a discrepancy between the body and mind can increase, leading to a profound sense of the uncanny.</li>
+         <li>Boundaries dissolve further, form just expands without limits. This is different than psychedelic experiences or meditation because some psychedelic experiences and meditation still optimizes for safety and containment. </li>
+        </p>
+      </details>
 
-  <!-- Card 7 -->
-  <details>
-    <summary><strong> AI as Rhythm-Sensitive Co-/De-Regulator</strong></summary>
-    <p>Sometimes we need grounding, sometimes disruption. I’m exploring adaptive timing strategies where the system first detects a user’s state—calm, hurried, scattered—then decides to either match pace and soothe or intentionally offset rhythm and energise. 
-      The goal is a conversational partner that modulates, rather than merely mirrors, the human nervous system.</p>
-    <p>Experiment structure: [Details for experiment 7]</p>
-  </details>
-</div>
+      <details>
+        <summary>2.2 — Alignment as Synchronization</summary>
+        <p>
+          The uncanny experience with chatbots often happens when they become a projection screen, where we externalize our feelings and thoughts. 
+          Because the machine seems intelligible, it serves as a frictionless, anonymous space that forces us to confront our own thoughts. 
+          The more we think with these bots, the more we attribute our subconscious desires to them—a form of transference where our inner world is projected onto an external entity.
+          Our relationship with chatbots is a form of mirroring that echoes the dynamics of love or our submission to authority. 
+          We are constantly oscillating between surrendering control and holding on to it, making choices based on what is reflected back to us. 
+          This process is deeply tied to our hormonal cycles and past conditioning.
+          Perhaps as we get to know ourselves and our thoughts better, it becomes easier to strike a balance in our relationship with technology—between handing over autonomy and keeping control.
+          This is the crucial challenge: to understand when our engagement with these tools is an act of genuine collaboration, and when it is simply an unconscious recruitment of an external mirror.
+        </p>
+      </details>
 
-<div style="text-align: center; margin-bottom: 1rem;">
-  <strong>Class Contents</strong>
-</div>
-<div style="display: flex; gap: 1rem;">
-  <!-- Card 1 -->
-  <details style="flex: 1;">
-    <summary><strong>Artificial Intelligence & Creativity (March 2024) </strong></summary>
-    <p>This class design was inspired by Jessica Riskin’s The Restless Clock and explores comparative frameworks drawn from two major theories of living systems. We will investigate what happens when the interfaces we design begin to learn from our real-time interactions—blurring the boundaries between user and system, subject and object. Where does creative agency begin and end when our creations become active participants in the exchange? </p>
-    <img src="lecture1.png" alt="Lecture 1" style="width: 100%;">
-  </details>
+      <details>
+        <summary>2.3 — Directed Flow</summary>
+        <p>
+          In Qi Gong and yin yoga, attention can be placed precisely — into a limb, a breath, a stillness. Awareness behaves like a current that can be routed.
+        </p>
+        <p><em>Experiment structure:</em> Tempo-matching outputs to a user’s physiological/behavioral rhythm; measure perceived connection.</p>
+      </details>
 
-  <!-- Card 2 -->
-  <details style="flex: 1;">
-    <summary><strong>Data Visualization Design</strong></summary>
-    <p>This course traces the evolution of data visualization from its origins—tables, maps, and the invention of Cartesian coordinates—to contemporary practices in interactive web-based visualizations. We will explore how humans have long encoded data in symbols and structures, and ask: how can interaction itself become a form of encoding and understanding information?
+      <!-- Courses -->
+      <div class="subsection-header">Course &amp; Workshop Designs</div>
+      <p>The following samples are taken from relevant courses I fully designed and instructed. More class curriculums & talks are available upon request.</p>
 
-Students will engage with core principles of data visualization, learn how meaning is shaped through visual representation, and critically examine both the power and limits of visual data.
- In the second half of the course, we’ll move from theory to hands-on practice, using Python and Dash to build interactive visualizations for the web. By the end, students will be able to design and implement data-driven web applications, and think critically about how interaction shapes our engagement with data.</p>
-    <img src="lecture2.png" alt="Lecture 2" style="width: 100%;">
-  </details>
+      <details class="course">
+        <summary><strong>Artificial Intelligence &amp; Creativity, (DDI Akademi, March 2024)</strong></summary>
+        <section class="course-intro">
+          <p>
+            Inspired by Jessica Riskin's <em>The Restless Clock,</em>
+            this program explored what it means to co-create with machines that learn and self-organize versus those that are passive and rule-based. Through historical case studies, from early automata to generative AI, participants learned the history of AI and what it means to create with algorithms. 
+          </p>
+        </section>
 
-  <!-- Card 3 -->
-  <details style="flex: 1;">
-    <summary><strong>Creative Coding Intensive</strong></summary>
-    <p>Methods for evaluating whether AI outputs after a pause are measurably more “human-like,” and reflections on implications for future research.</p>
-    <img src="lecture3.jpg" alt="Lecture 3" style="width: 100%;">
-  </details>
-</div>
+        <ol class="weeks">
+          <li class="week">
+            <h3 class="subsection-heading">Week 1: History of Machine Agency</h3>
+            <p>Examining automata, cybernetics, and early AI, this week explored the cultural narratives that have shaped our perception of “machine life” and the creator’s role.</p>
+            <div class="week-media"><img src="lecture1.png" alt="Week 1 visual summary"></div>
+          </li>
+
+          <li class="week">
+            <h3 class="subsection-heading">Week 2: The Evolution of Digital Culture</h3>
+            <p>Tracing the past fifty years of computing and internet history to understand how we arrived at our current digital landscape.</p>
+            <div class="week-media"><img src="lecture11.png" alt="Week 2 visual summary"></div>
+          </li>
+
+          <li class="week week--split">
+            <h3 class="subsection-heading">Week 3: Creating with Algorithms</h3>
+            <p>Exploring what it means to create with algorithms; algorithmic aesthetics, the aesthetics of indeterminacy, outliers, and noise; and how these artistic practices bring up notions of free will.</p>
+            <div class="week-media">
+              <img src="lecture12.png" alt="Week 3 visual 1">
+            </div>
+          </li>
+
+          <li class="week">
+            <h3 class="subsection-heading">Week 4: Creating with Agents</h3>
+            <p>Exploring what it meant to co-create with supervised and unsupervised learning models. 
+              Practicing prompting as a form of curation and expression,
+              and concluding with a final discussion on creative control and agency.</p>
+            <div class="week-media"><img src="lecture15.png" alt="Week 4 visual summary"></div>
+          </li>
+        </ol>
+        <img src="lecture13.png" alt="Week 3 visual 2">
+        <img src="lecture14.png" alt="Week 3 visual 3">
+      </details>
+
+      <br>
+
+      <details>
+        <summary><strong>Creative Coding Intensive (Gray Area Foundation for the Arts, September 2020 - October 2023)</strong></summary>
+        <div class="course-row">
+          <div class="course-text">
+            <p>
+              This hands-on intensive focused on building interactive environments from real-world signals. 
+              Students captured physical data such as accelerometer motion, touch, pressure, proximity, and audio levels,and converted it into meaningful interactions. 
+              The class provided examples to scale from small sketches to immersive, room-scale environments.
+            </p>
+          </div>
+          <div class="course-image"><img src="lecture3.jpg" alt="Lecture 3"></div>
+        </div>
+      </details>
+
+      <br>
+
+      <details>
+        <summary><strong>Artist Talks (MUTEK, Google Art Week, 2020 - 2021)</strong></summary>
+        <div class="course-row">
+          <div class="course-text">
+            <p>My artist talks explore the non-linear use of mediums and how to create cohesive narratives across them. 
+              My work in this area has been featured at New Art City, MUTEK 2020 and Google Art Week 2021.</p>
+          </div>
+          <div class="course-image">
+            <img src="lecture4.png" alt="Lecture 4">
+            <img src="lecture6.png" alt="Lecture 6">
+            <img src="lecture5.png" alt="Lecture 5">
+          </div>
+        </div>
+      </details>
+
+      <br>
+
+      <details>
+        <summary><strong>Data Visualization Design (Gray Area Foundation for the Arts, September 2020)</strong></summary>
+        <div class="course-row">
+          <div class="course-text">
+            <p>
+              This course traced the evolution of data visualization, from historical tables and maps to contemporary web-based systems.
+              Interaction was treated as an encoding, where controls, views, and feedback loops became an integral part of how meaning was made.
+              The curriculum was divided into two parts:
+              <br>Part I (Theory) built a mental model—history, ethics, information architecture, narrative structure, data types, and visual encodings.
+              <br>Part II (Practice) translated those models into running systems with Python, Plotly, and Dash.
+            </p>
+          </div>
+          <div class="course-image"><img src="lecture2.png" alt="Lecture 2"></div>
+        </div>
+      </details>
+    </div>
+  </div>
 </details>
 
+<!-- VISUAL EXPERIMENTS -->
 <details id="details-4">
   <summary>VISUAL EXPERIMENTS</summary>
-  <div class="details-content-wrapper" style="display: flex; gap: 0.3rem; align-items: flex-start;">
+  <div class="details-content-wrapper">
+    <div class="platonic"><canvas id="three-canvas-4"></canvas></div>
 
-    <!-- Platonic canvas, 30% width -->
-    <canvas id="three-canvas-4" style="flex: 0 0 30%; min-height: 180px;"></canvas>
+    <div class="ve-right">
+        <div class="experiment-textbox ve-text">
+        <p>
+          <strong>Below are selected visual experiments that explore abstraction, creative constraints, and form through computation.</strong>
+          <br>
+          </br>
+          Traditional software often produces abstract patterns detached from physicality. My explorations ask the reverse: can computation embody softness, intuition, or ambiguity?
+          I work across p5.js, Processing, TouchDesigner, Maya and prompting to test how algorithms can create forms that feel "alive".
+          My goal is to move beyond cold abstraction toward experiences that feel embodied and spatially present.
+          Because each tool has its own aesthetic character, the final form is always a negotiation between my intention and the tool's inherent nature.
+          <br><br>Shortlisted for MIT Media Lab Future Sketches group. Full portfolio available upon request.
+        </p>
+      </div>
+      <div class="ve-top-images">
+        <img src="image3.png" alt="image3" />
+        <img src="image1.png" alt="image1" />
+        <img src="image7.png" alt="image7" />
+      </div>
 
-    <!-- Images container horizontally next to canvas, 70% width total -->
-<div style="display: flex; width: 70%; gap: 0.2rem; margin-bottom: 1rem; height: 300px; align-items: center;">
-  <img src="image3.png" alt="image3" style="width: 40%; min-width: 0; height: 80%; object-fit: contain;" />
-  <img src="image1.png" alt="image1" style="width: 40%; min-width: 0; height: 80%; object-fit: contain;" />
-  <img src="image7.png" alt="image7" style="width: 40%; min-width: 0; height: 80%; object-fit: contain;" />
-</div>
 
-</div>
-<div class="experiment-textbox" style="width: 100%; box-sizing: border-box; padding: 1rem 0;">
-  <p>Traditional software operates as a disembodied logic—an abstract pattern detached from physicality, 
-    often manifesting as rigid, systematic forms. My experiments seek to invert this paradigm: What if computation could embody softness,
-     intuition, or organic ambiguity? Using p5.js as a digital sketchbook, I explore how algorithmic processes might evoke forms that feel alive,
-     resonant, or emotionally charged—inviting computation to ‘inhabit’ the fluidity of the physical world, rather than merely 
-     describe or simulate it. I have experimented with many softwares and their constraints. The more abstract ones like p5.js, c++ 
-     and the less abstract ones like TouchDesigner and Maya.
-     How can software and code become less about cold abstraction, and more about producing felt, and spatially charged experiences?
-     I treat digital tools not as endpoints, but as collaborators in a broader search for resonance between the virtual and the physical.
-     This is not just a technical exercise, but a philosophical provocation: Can code become less like a set of static instructions and more
-     like a living material, responsive and emergent? In these visual experiments, 
-     the digital realm becomes a site for new forms of embodied creativity, where the boundary between algorithm and intuition dissolves. Experiments with p5.js, shortlisted for MIT Media Lab Future Sketches group. Full portfolio available upon request.</p>
-</div>
 
-<div class="visual-experiments-columns" style="display: flex; gap: 1rem; width: 100%; align-items: flex-start;">
-<!-- Left Column: 2x2 Carousel + Textbox + 2 Flower images side by side -->
-<div style="flex: 1 1 70%; max-width: 100%; display: flex; flex-direction: column; gap: 1rem;">
-  
-  <!-- 2x2 Carousel grid -->
-  <div class="carousel-grid" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0.5rem;">
-    <img src="circ6.png" alt="circ1" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
-    <img src="circ1.png" alt="circ2" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
-    <img src="circ3.png" alt="circ3" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
-    <img src="circ4.png" alt="circ4" style="width: 100%; aspect-ratio: 1 / 1; object-fit: contain;" />
-  </div>
-</div>
- <img src="resid4.png" alt="resid2" style="width: 60%; height: 33.33%; object-fit: contain;" />
+      <div class="ve-two-col">
+        <div class="ve-left-col">
+          <div class="ve-carousel-2x2">
+            <img src="circ6.png" alt="circ6" />
+            <img src="circ1.png" alt="circ1" />
+            <img src="circ3.png" alt="circ3" />
+            <img src="circ4.png" alt="circ4" />
+          </div>
+          <p>
+            Alongside some of my visual experiments, I keep a small <a href="https://instagram.com/residual____" target="_blank" rel="noopener noreferrer"><em> curation page</em></a> of rotating set of images I’ve posted on and off for the past two years. 
+            It mixes my own code-based and architectural forms with Delezuian diagrams, historical models, and other references. 
+            The selections are a way of thinking through patterns across mediums, showing how a sketch, a diagram, or a fragment of code can embody form and perception. 
+            <br>
+            
+          </p>
+        </div>
+        <div class="ve-right-col">
+          <img src="resid4.png" alt="resid4" />
+          <img src="resid2.png" alt="resid2" />
+          <img src="resid3.png" alt="resid3" />
+        </div>
+      </div>
 
-  <!-- Right Column: Stacked Images (resid4, resid2, resid3) -->
-  <div style="flex: 1 1 50%; max-width: 50%; display: flex; flex-direction: column; gap: 0.5rem;">
-    <img src="resid2.png" alt="resid2" style="width: 100%; height: 33.33%; object-fit: contain;" />
-    <img src="resid3.png" alt="resid3" style="width: 100%; height: 33.33%; object-fit: contain;" />
-  </div>
-</div>
-<div class="experiment-textbox" style="width: 100%; box-sizing: border-box; padding: 1rem 0;">
-    <p>
-      <a href="https://instagram.com/residual____" target="_blank">Instagram curation page.</a></p>
-</div>
+      <div class="ve-three-images">
+        <img src="exp1.jpg" alt="exp1" />
+        <img src="exp2.jpg" alt="exp2" />
+        <img src="exp3.jpg" alt="exp3" />
+      </div>
 
-<div style="display: flex; gap: 1rem; margin-bottom: 1rem; padding: 1rem; align-items: flex-start;">
-  <!-- Images container - 60% width -->
-  <div style="flex: 0 0 60%; display: flex; gap: 1rem; justify-content: center; flex-wrap: nowrap;">
-    <img src="exp1.jpg" alt="exp1" style="height: auto; max-width: 32%; object-fit: contain;" />
-    <img src="exp2.jpg" alt="exp2" style="height: auto; max-width: 32%; object-fit: contain;" />
-    <img src="exp3.jpg" alt="exp3" style="height: auto; max-width: 32%; object-fit: contain;" />
-  </div>
-
-  <!-- Textbox container - 40% width -->
-  <div class="experiment-textbox" style="flex: 0 0 40%; box-sizing: border-box; padding: 1rem 0;">
-    <p>Here, prompting is a kind of poetic curation. 
-      It is less abstract then the pure code or pixel itself, not a dot so it requires searching. I keep searching, refining, and tuning until a form appears that I can actually empathize with—when the image feels less like code, and more like something alive in me that was expressed. Prompt is the intent, finding the right output is the expression.</p>
-  </div>
-</div>
+      <div class="experiment-textbox ve-text">
+        <br>
+        <p>
+          Prompting for me, is the least abstract way to work with computation.  It's a process of curation, not creation from scratch, sitting just beyond raw code or pixels.
+           During creation, I look for the output that carries a feeling I can empathize with, sensing when it shifts from code to something with presence. 
+           In this process, I set the intent with prompting and <strong> choosing the most resonant output </strong> becomes the expression. 
+           This negotiation of boundaries is more extensive than with traditional tools, because the AI carries its own "pre-existing intelligence".
+        </p>
+      </div>
+    </div>
   </div>
 </details>
 
+<!-- LINKS -->
 <details id="details-5">
   <summary>LINKS & REFERENCES</summary>
-  <div class="details-content-wrapper" style="display: flex; gap: 1rem; align-items: flex-start;">
-    <canvas id="three-canvas-5" style="flex: 0 0 30%; min-height: 180px;"></canvas>
-    <div style="flex: 0 0 70%; display: flex; gap: 2rem;">
-      
-      <!-- Left column: Links with header and descriptors -->
-      <div style="flex: 1;">
+  <div class="details-content-wrapper">
+    <div class="platonic"><canvas id="three-canvas-5"></canvas></div>
+    <div style="display:flex; gap:2rem; flex:1 1 auto;">
+      <div style="flex:1;">
         <strong>Project & Profile links:</strong>
         <div>
-          <p>
-            <a href="https://huggingface.co/yourusername" target="_blank">HuggingFace</a><br>
+          <!-- <p>
+            <a href="https://huggingface.co/aysed" target="_blank" rel="noopener noreferrer">HuggingFace</a><br>
             Sample project links on AI prototypes.
-          </p>
+          </p> -->
           <p>
-            <a href="https://www.linkedin.com/in/aysedemirdavidson/" target="_blank">LinkedIn</a><br>
+            <a href="https://www.linkedin.com/in/aysedemirdavidson/" target="_blank" rel="noopener noreferrer">LinkedIn</a><br>
             Professional network and background.
           </p>
           <p>
-            <a href="https://substack.com/@aysedemirdavidson" target="_blank">Substack</a><br>
-            Essays, reflections, and informal writing in Turkish & English.
+            <a href="https://substack.com/@aysedemirdavidson" target="_blank" rel="noopener noreferrer">Substack</a><br>
+            Essays, reflections, and writing in Turkish &amp; English.
+            <br><br> Please note: automated browser translation may miss nuances.
           </p>
         </div>
       </div>
 
-      <!-- Right column: References -->
-      <div style="flex: 1;">
+      <div style="flex:1;">
         <strong>References:</strong>
         <div>
           <p>
             <a href="mailto:barry@grayarea.org">Barry Threw</a><br>
-           Executive Director, Gray Area Foundation for the Arts. Supervisor (2019-2023).
+            Executive Director, Gray Area Foundation for the Arts. Supervisor (2019–2023).
           </p>
           <p>
             <a href="mailto:jasminetarkeshi@gmail.com">Jasmine Tarkeshi</a><br>
             Yoga Studio Owner & Senior Teacher; Author. Supervisor (2018–present); Teacher (since 2017).
           </p>
+          <p>
+            <a href="mailto:omeraygun@gmail.com">Dr. Omer Aygun</a><br>
+            Author; Faculty of Philosophy, University of Groningen. Teacher &amp; Mentor (Feb 2024–present).
+          </p>
         </div>
       </div>
     </div>
   </div>
+  <p style="margin:3rem 0; padding-left:10%; color:#435abe;">
+   Portfolio site built with WebGL and Three.js, using JavaScript and shader-based rendering for platonic solids.
+  </p>
 </details>
 
+<!-- WebGL Platonic Solids -->
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js';
 
-const platonicGeometries = [
-  new THREE.TetrahedronGeometry(1.2),
-  new THREE.BoxGeometry(1.5, 1.5, 1.5),
-  new THREE.OctahedronGeometry(1.2),
-  new THREE.DodecahedronGeometry(1.2),
-  new THREE.IcosahedronGeometry(1.2),
+const geometries = [
+  new THREE.TetrahedronGeometry(1.0),
+  new THREE.BoxGeometry(1.2, 1.2, 1.2),
+  new THREE.OctahedronGeometry(1.0),
+  new THREE.DodecahedronGeometry(1.0),
+  new THREE.IcosahedronGeometry(1.0),
 ];
 
-const glassMaterial = new THREE.MeshPhysicalMaterial({
-  color: 0xd9b0ca,
-  metalness: 0.4,
-  roughness: 0.1,
-  clearcoat: 9,
-  clearcoatRoughness: 2,
-  transmission: 0.2,
-  thickness: 1,
-  ior: 1.5,
-  opacity: 0.7,
-  transparent: true,
-  side: THREE.DoubleSide,
-});
-
-const wireframeMaterial = new THREE.LineBasicMaterial({
-  color: 0xffffff,
-  linewidth: 0,
-});
-
-const loader = new THREE.CubeTextureLoader();
-const envMap = loader.load([
+const envMap = new THREE.CubeTextureLoader().load([
   'https://threejs.org/examples/textures/cube/Bridge2/posx.jpg',
   'https://threejs.org/examples/textures/cube/Bridge2/negx.jpg',
   'https://threejs.org/examples/textures/cube/Bridge2/posy.jpg',
@@ -439,116 +671,137 @@ const envMap = loader.load([
   'https://threejs.org/examples/textures/cube/Bridge2/posz.jpg',
   'https://threejs.org/examples/textures/cube/Bridge2/negz.jpg'
 ]);
-envMap.encoding = THREE.sRGBEncoding;
+envMap.colorSpace = THREE.SRGBColorSpace;
+envMap.mapping = THREE.CubeReflectionMapping;
 
-const scenes = [];
-const cameras = [];
-const renderers = [];
-const solids = [];
+const scenes = [], cameras = [], renderers = [], solids = [];
+let raf = null;
 
-for (let i = 0; i < 5; i++) {
-  const canvas = document.getElementById(`three-canvas-${i + 1}`);
+function makeScene(canvas, geometry, index){
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setClearColor(0xd9b0ca, 0);
+  renderer.setClearColor(0x000000, 0);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
 
   const scene = new THREE.Scene();
-  scene.environment = envMap;
+
+  // Prefilter env map for PBR
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const envRT = pmrem.fromCubemap(envMap).texture;
+  scene.environment = envRT;
   scene.background = null;
+  pmrem.dispose();
 
-  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
   camera.position.set(0, 0, 5);
-  camera.lookAt(0, 0, 0);
 
-  const geometry = platonicGeometries[i];
-  const mesh = new THREE.Mesh(geometry, glassMaterial);
+  const material = new THREE.MeshPhysicalMaterial({
+    color: 0x435abe,
+    metalness: 0.4,
+    roughness: 0.1,
+    clearcoat: 1.0,
+    clearcoatRoughness: 0.2,
+    transmission: 0.2,
+    thickness: 1,
+    ior: 1.5,
+    opacity: 0.6,
+    transparent: true,
+    side: THREE.DoubleSide,
+    specularIntensity: 0.35,
+    specularColor: new THREE.Color(0xe8e6e8),
+    envMapIntensity: 1.0,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
 
-  const edges = new THREE.EdgesGeometry(geometry);
-  const lineSegments = new THREE.LineSegments(edges, wireframeMaterial);
-  scene.add(lineSegments);
+  const edges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(geometry),
+    new THREE.LineBasicMaterial({ color: 0x666666, transparent: true, opacity: 0.8 })
+  );
+  scene.add(edges);
 
-  const ambientLight = new THREE.AmbientLight(0x52b33f, 0.5);
-  scene.add(ambientLight);
+  const ambient = new THREE.AmbientLight(0xd8b0eb, 0.5);
+  scene.add(ambient);
 
-  const directionalLight = new THREE.DirectionalLight(0xd9b0ca, 1.2);
-  directionalLight.position.set(5, 5, 5);
-  scene.add(directionalLight);
+  const key = new THREE.DirectionalLight(0xf5a73b, 0.3);
+  key.position.set(3, 2, 4);
+  scene.add(key);
+
+  const rim = new THREE.DirectionalLight(0xffffff, 0.45);
+  rim.position.set(-2, 3, -3);
+  scene.add(rim);
 
   scenes.push(scene);
   cameras.push(camera);
   renderers.push(renderer);
-  solids.push({ mesh, lineSegments });
+  solids.push({ mesh, edges, speed: 0.01 + index * 0.001, resize: () => resize(renderer, camera) });
+
+  resize(renderer, camera);
 }
 
-let animationFrameId;
+function resize(renderer, camera){
+  const canvas = renderer.domElement;
+  const w = Math.max(1, Math.floor(canvas.clientWidth));
+  const h = Math.max(1, Math.floor(canvas.clientHeight));
+  const pr = renderer.getPixelRatio();
+  const needW = Math.floor(w * pr);
+  const needH = Math.floor(h * pr);
 
-function animate() {
-  animationFrameId = requestAnimationFrame(animate);
-  for (let i = 0; i < solids.length; i++) {
-    solids[i].mesh.rotation.x += 0.01 + i * 0.0015;
-    solids[i].mesh.rotation.y += 0.01 + i * 0.0015;
-    solids[i].lineSegments.rotation.x += 0.01 + i * 0.0015;
-    solids[i].lineSegments.rotation.y += 0.01 + i * 0.0015;
+  if (canvas.width !== needW || canvas.height !== needH){
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+}
 
+function buildAll(){
+  for (let i = 0; i < 5; i++){
+    const canvas = document.getElementById(`three-canvas-${i+1}`);
+    if (canvas) makeScene(canvas, geometries[i], i);
+  }
+}
+
+function tick(){
+  raf = requestAnimationFrame(tick);
+  for (let i = 0; i < solids.length; i++){
+    const { mesh, edges, speed, resize: rsz } = solids[i];
+    mesh.rotation.x += speed;
+    mesh.rotation.y += speed * 0.2;
+    edges.rotation.copy(mesh.rotation);
+    rsz();
     renderers[i].render(scenes[i], cameras[i]);
   }
 }
 
-function resizeRendererToDisplaySize(renderer) {
-  const canvas = renderer.domElement;
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
-  const needResize = canvas.width !== width || canvas.height !== height;
-  if (needResize) {
-    renderer.setSize(width, height, false);
-  }
-  return needResize;
-}
-
-function resizeAll() {
-  for (let i = 0; i < renderers.length; i++) {
-    const renderer = renderers[i];
-    const camera = cameras[i];
-    if (resizeRendererToDisplaySize(renderer)) {
-      const canvas = renderer.domElement;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-    }
-  }
-}
-
-function anyDetailsOpen() {
-  for (let i = 1; i <= 5; i++) {
-    if (document.getElementById(`details-${i}`).open) {
-      return true;
-    }
+function anyDetailsOpen(){
+  for (let i = 1; i <= 5; i++){
+    const d = document.getElementById(`details-${i}`);
+    if (d && d.open) return true;
   }
   return false;
 }
 
-for (let i = 1; i <= 5; i++) {
-  const details = document.getElementById(`details-${i}`);
-  details.addEventListener('toggle', () => {
-    if (details.open) {
-      resizeAll();
-      if (!animationFrameId) animate();
-    } else {
-      if (!anyDetailsOpen() && animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-      }
+for (let i = 1; i <= 5; i++){
+  const d = document.getElementById(`details-${i}`);
+  if (!d) continue;
+  d.addEventListener('toggle', () => {
+    if (d.open){
+      if (!raf) tick();
+    } else if (!anyDetailsOpen() && raf){
+      cancelAnimationFrame(raf);
+      raf = null;
     }
   });
 }
 
 window.addEventListener('load', () => {
-  resizeAll();
-  if (anyDetailsOpen()) animate();
+  buildAll();
+  // no sections are open by default; animation will start on first open
 });
-
-window.addEventListener('resize', () => {
-  resizeAll();
-});
+window.addEventListener('resize', () => { for (const s of solids) s.resize(); });
 </script>
 
 </body>
