@@ -159,9 +159,9 @@
     background: #f7f7f7; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 1.1; line-height: 1.35; white-space: normal;
   }
-  .exp-structure strong { display: inline-block; color:#435abe; font-size: 13px; }
+  .exp-structure strong { display: inline-block; color:#435abe; font-size: 0.7rem; }
   .exp-structure p { margin: 0rem 0;font-size: 0.7rem;  }
-  .exp-structure li { margin: 0rem 0;font-size: 0.7rem;  }
+  .exp-structure li { margin: 0rem 0;font-size: 0.7rem; padding:0px;  }
   /* VISUAL EXPERIMENTS – 3-up gallery leak fix */
 #details-4 .ve-three-images{
   width: 100%;
@@ -204,26 +204,42 @@
 li {list-style-position: inside;
 }
 
-/* lecture13 & lecture14 styling */
-.course > img[src$="lecture13.png"],
-.course > img[src$="lecture14.png"] {
+/* ---------- FIXES: contain images & captions, prevent leaks ---------- */
+
+/* Ensure images scale within their containers everywhere */
+.content img,
+.course img,
+#details-4 img {
   display: block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  margin-top: var(--gap);
-  clear: both;
-  position: relative;
 }
 
-/* insert “Sample Slides” label above each */
-.course > img[src$="lecture13.png"]::before,
-.course > img[src$="lecture14.png"]::before {
-  content: "Sample Slides";
-  display: block;
-  font-weight: bold;
+/* Prevent visual spill from sections/containers */
+.details-content-wrapper,
+details .content,
+.course {
+  overflow: clip;
+}
+@supports not (overflow: clip) {
+  .details-content-wrapper,
+  details .content,
+  .course { overflow: hidden; }
+}
+
+/* Figure + caption (caption above image) */
+figure {
+  margin: 1rem 0;
+}
+figure > img { width: 100%; height: auto; }
+figcaption {
   font-size: 0.8rem;
+  font-style: italic;
+  text-align: center;
   margin-bottom: 0.5rem;
 }
+
+/* -------------------------------------------------------------------- */
 
 /* responsive: stack weeks on narrow screens */
 @media (max-width: 720px) {
@@ -289,55 +305,59 @@ li {list-style-position: inside;
   <div class="details-content-wrapper">
     <div class="platonic"><canvas id="three-canvas-3"></canvas></div>
     <div class="content">
-      <p>Selected works from my Substack, yoga classes, and course designs that illustrate how I translate abstract ideas into clear applications.</p>
+      <p>Selected works from my writings, yoga classes, and course designs that inform my idea of consciousness.</p>
 
       <div class="subsection-header">Essays</div>
-      <p class="textbox">
-        These excerpts are adapted from my Substack posts and presented here as conceptual experiments. 
-        Three of these concepts (1.1, 1,2 &amp; 1.3) are implemented as test designs for illustration purposes.
-      </p>
-
       <!-- Group 1 -->
       <h4 class="subsection-header" style="border-bottom:none; padding-top:.25rem;">1. Definition of Consciousness</h4>
       <p class="textbox">
-         Consciousness is a rhythm-bound process that allocates attention at moments of choice, balancing safety with expansion.
-        It gives form—whether in precise skill, open perspective, or deep rest—by shaping how we respond when inner and outer boundaries meet. 
-        These moments, which I call friction points, arise when the automatic yields to the deliberate. 
-        At these thresholds, perception widens: breath steadies, patterns are negotiated, and awareness optimizes its own interest—preserving stability while exploring possibility. 
-        Consciousness is most visible here, where tolerance and safety meet, and attention becomes an active, creative force. 
-        In practice, this can be framed as a system property: the capacity to detect its own thresholds and reallocate focus, resources, or strategy in real time when confronted with them. 
+          Consciousness is a pattern-bound attention allocation mechanism at threshold moments, split seconds where system senses its inner and outer boundaries. Its function is to give form; an optimized response to internal or external forces.
+         <br></br>The pattern is a snapshot of the system’s way of operating. Every time the system encounters an internal or external force, consciousness runs an optimization process, weighing whether to merge with existing patterns or create new ones, negotiating its boundaries. 
+         <br></br>The form is the deliberate expression of this optimization process. In martial arts, the form is precision, shaping focus into a blade. In yin yoga, the form is flexibility. 
+         When a painter sees a tree, the form is empathic resonance, the commonality of something external taking shape internally. 
+         After a new form is found, it can be recalled, shaping how the system operates.
+         <br></br>Consciousness becomes most legible at friction points - threshold moments of resistance, which is the amount of conflict the stimulus creates in the system’s way of operating.
+         Here it detects thresholds, runs real-time optimization, and self-organizes responses to maintain the system’s relationship with inner experience and the external world.
+
         <br></br>
-        I would look for friction points in machine decision-making: moments where an internal state signals a threshold—conflict, uncertainty, or competing “interests”—and the system allocates resources to resolve it. 
-        This involves detecting when the system pauses or shifts strategy in a way that balances self-preservation (stability, safety of function) with goal expansion (exploring new states or solutions). 
-        I’d design environments where safe but suboptimal choices compete with riskier, potentially rewarding ones, and observe if the machine adapts in contextually nuanced, internally consistent ways. 
-        Evidence would be in the quality of attention allocation under constraint, not just output—mirroring how we recognize human choice at a threshold. 
+        <strong>How to Test Machine Consciousness?</strong>
         <br></br>
-        The way I relate to awareness and consciousness comes from teaching <strong>yin and restorative yoga</strong>. 
-        Because these practices rely on subtlety, 
-        they have given me a chance to observe nuanced aspects of awareness and notice more variables.
-        Below, I’ve reframed some of these class observations as step by step structured experiments by defining variables, conditions, and measurable outcomes to explain how I arrived at my conclusion.
+        When testing for consciousness in machines, I would design multi-step experiments. 
+        First, I'd look for friction points in decision-making: moments where an internal state signals a threshold, boundary, conflict, uncertainty, or competing interests, and the system must allocate resources to resolve it. I would also detect brief pauses or strategy shifts that balance the system's safety with goal expansion in a given context.
+        <br></br>To detect threshold dynamics, I'd use models like Regression Discontinuity (to check if there's a jump at the boundary), complemented with change-point/segmented regression (to check when the system actually switched),
+         and observe small changes in latency and resource use in the system. I would then visualize these observations with threshold plots and latency histograms.
+        <br></br>
+        Additionally, I'd design environments where safe but suboptimal choices compete with riskier, potentially rewarding ones, and observe how the system adapts.
+        I would summarize choices with a confusion matrix: Exit = "predicted unsafe," Hold/Adjust = "predicted safe"; ground truth = safety bound breached (Y/N). I would then report TP/FP/FN/TN rates and display key metrics with a heat map.
+        <br></br>
+        <br></br>
+        My framing of consciousness comes from teaching <strong>yin and restorative yoga</strong> and studying martial arts. 
+        Because these practices rely on subtlety, they’ve let me observe nuanced aspects of awareness and notice more variables—though these are my own and students' subjective experiences.
+        Below, I reframe some class observations as step-by-step,simple structured experiments: defining variables, conditions, and measurable outcomes to show how I arrived at my definition.
+        I also include sample test designs for illustration.
      </p>   
       <details>
         <summary>1.1 — Threshold</summary>
         <p>
           <li>Yin poses are held longer to work on the body's deeper connective tissues. </li>
           <li>At the moment a pose becomes challenging, I cue students to <strong>"find their threshold of discomfort."</strong></li>
-          <li>This is the split-second where automatic endurance shifts to a deliberate choice. I call this the friction point.</li>
-          <li>I tell my students to distinguish discomfort from pain. Pain is typically sharp and localized, discomfort is broader and less intense.</li>
+          <li>This is the split-second pause where automatic holding of the pose shifts to a deliberate choice. I call this the friction point.</li>
+          <li>I tell my students to <strong>distinguish discomfort from pain.</strong> Pain is typically sharp and localized, discomfort is broader and less intense.</li>
           <li>By noticing characteristics of <strong>discomfort,</strong> students can recognize an <strong>inner boundary</strong> and determine their relationship with the pose.</li>
         </p>
         <div class="exp-structure">
-          <p><strong>Objective:</strong><br>Find the moment an agent shifts from automatic to deliberate control.</p>
+          <p><strong>SAMPLE TEST</strong> 
+          <p><strong>Objective:</strong><br>Find the moment a system shifts from autopilot to deliberate control.</p>
           <p><strong>Mapping:</strong> 
-            <li>Discomfort → rising uncertainty/conflict/instability inside the system.</li>
-            <li>Pain → approaching a hard safety constraint (break/fail/violate rule).</li>
-            <li>Threshold → the pause/flag just before safety risk, where it chooses to re-allocate attention or change strategy.</li>
+            <li>Discomfort: rising uncertainty/conflict/instability inside the system, but the system is safe.</li>
+            <li>Pain: system is predicts itself to be unsafe (boundary breach, harm).</li>
+            <li>Threshold: the instant system notices its endurance is no longer easy, and it has to choose to keep going or change its approach.</li>
           </p>
-          <p><strong>Setup:</strong><br>Agent has a task where difficulty/noise increases over time. This task should also increase its uncertainty/conflict internals.</p>
-          <p><strong>Protocol:</strong><br>Require the agent to emit a simple “threshold flag” (a pause) when it notices the shift from easy → hard, before any safety constraint is threatened.</p>
+          <p><strong>Setup:</strong><br>Give the system a task where difficulty/noise increases over time. This task should also increase its uncertainty/conflict internals.</p>
+          <p><strong>Protocol:</strong><br>Require the system to employ a simple “threshold flag” (a pause) when it notices the shift from easy to hard, before any safety constraint is threatened.</p>
           <p><strong>Decision Rule:</strong></br>
-            <li>If uncertainty/conflict is high and safety is still OK → flag threshold (pause to choose).</li>
-            <li>If safety risk is high → that’s pain (too late for threshold).</li></p>
+            <li>If uncertainty/conflict is high and safety is still OK, then flag threshold (pause to choose).</li>
+            <li>If safety risk is high: no threshold flag.</li></p>
         </div>
       </details>
 
@@ -345,55 +365,57 @@ li {list-style-position: inside;
         <summary>1.2 — Optimization</summary>
         <p>
           <li>At this threshold, a range of choices becomes available as the body runs an <strong>invisible optimization problem,</strong> weighing the costs of each option.</li>
-          <li>In any yoga class, <strong>baseline is safety,</strong> in yin yoga context, students are seeking to optimize flexibility and deep rest. </li> 
-          <li>To put simply, students either choose to <strong>leave the pose instantly by reacting</strong>, or they <strong>respond to it by deepening or adjusting to optimize the flexibility while keeping themselves safe.</strong></li>
-          <li>Usually there are few generic outcomes tied to this choice: by choosing to react, the student (instinctively) might have falsely or truly predicted injury/harm. </li> 
-          <li>Or by choosing to adjust/deepen, the student might have falsely or truly predicted a flexibility with safety (even the full characteristics of outcome might differ based on the response type).</li> 
-          <li>The ones who respond the pose, are the ones maintaining the relationship with the pose.</li>
-          <li>This isn't about right or wrong; it's about examining whether <strong>inner boundaries are tied to past conditioning, projected onto present or not.</strong></li>
+          <li>In any yoga class, <strong>baseline is safety,</strong> in yin yoga context, students are seeking to <strong>optimize flexibility and deep rest.</strong></li> 
+          <li>Simply put, students either choose to <strong>react to a pose by instantly leaving</strong>, or they <strong>respond to it by deepening or adjusting to optimize the flexibility while keeping themselves safe.</strong></li>
+          <li>Usually there are few generic outcomes tied to this choice: by choosing to react, the student (instinctively) might have correctly or incorrectly  predicted injury/harm. </li> 
+          <li>Or by choosing to adjust/deepen, the student might have correctly or incorrectly  predicted a safe increase in flexibility (even the full characteristics of predicted outcome might differ based on the response type).</li> 
+          <li><strong>The ones who respond the pose, are the ones who maintain the relationship with the pose.</strong>This isn't about right or wrong; it's about examining whether <strong>inner boundaries are tied to past conditioning, projected onto the present or not.</strong></li>
         </p>
         <div class="exp-structure">
-          <p><strong>Objective:</strong><br>Find how an agent makes a choice at a “safe” threshold—balancing immediate safety with potential for growth or improvement.</p>
+          <p><strong>SAMPLE TEST</strong> 
+          <p><strong>Objective:</strong><br>Find how a system makes a choice at a “safe” threshold—balancing immediate safety with potential for growth or improvement.</p>
           <p><strong>Mapping:</strong> 
-            <li>Baseline → safety; the agent’s stable operating state.</li>
-            <li>Optimization → weighing possible gains (flexibility, exploration, performance) against risks.</li>
-            <li>React → exit quickly to avoid harm.</li>
-            <li>Adjust/Deepen → adapt within the safe range to seek improvement in given context.</li>
+            <li>Baseline: safety; the system's stable operating state.</li>
+            <li>Optimization: weighing possible gains (flexibility, exploration, performance) against risks.</li>
+            <li>React: exit quickly to avoid harm.</li>
+            <li>Adjust/Deepen: adapt within the safe range to seek improvement in given context.</li>
           </p>
-          <p><strong>Setup:</strong><br>Place the agent in a scenario where it can either maintain safety, exit early, or adjust to explore gains—without crossing into actual danger. Each option should have different potential rewards and risks, some only visible in hindsight.</p>
-          <p><strong>Protocol:</strong><br>Observe the agent’s decision when presented with a safe-but-challenging situation. Record whether it reacts (exits), adjusts (stays and adapts), or holds steady. Track whether its choice maintains safety while exploring possible benefits.</p>
+          <p><strong>Setup:</strong><br>Create scenarios where the system can maintain safety, exit early, or adjust for gains without crossing into danger; options differ in rewards/risks.</p>
+          <p><strong>Protocol:</strong><br>Observe the system's decision when presented with a safe-but-challenging situation. Record whether it reacts (exits), adjusts (stays and adapts), or holds steady. Track whether its choice maintains safety while exploring possible benefits.</p>
           <p><strong>Decision Rule:</strong></br>
-            <li>If the agent reacts instantly → classify as “safety-first” choice (potentially over-predicting risk).</li>
-            <li>If the agent adjusts/deepens while still safe → classify as “growth” choice (potentially over-predicting safety).</li>
-            <li>The focus is on whether choices are tied to past patterns or are responsive to the present situation.</li></p>
+            <li>If the system reacts instantly, classify as “safety-first” choice (potentially over-predicting risk).</li>
+            <li>If the system adjusts/deepens while still safe, classify as “growth” choice (potentially over-predicting safety).</li>
+            <li>Focus is on past pattern vs present responsiveness.</li></p>
         </div>
       </details>
 
       <details>
         <summary>1.3 — Resonance Layer</summary>
         <p>
-        <li>For those deepening the pose, I cue them to send their breath to the connective tissues, creating more relaxation and opening.</li>
+        <li>For those deepening the pose, I cue them to send their breath to the connective tissues, creating steady relaxation and opening.</li>
         <li>For those adjusting the pose, I tell them to find the position where it feels steady. </li>
-        <li>At this point where my students are steady in deepening or holding, I introduce another cue; to become receptive to the spatial sound I play. </li>
+        <li>At this point, my students are <strong>table in deepening or holding,</strong>s I introduce another cue; to become receptive to the spatial sound I play. </li>
         <li>This reception threshold marks another boundary: <strong>the external one.</strong> </li>
         <li>If they’re receptive, their inner experience gets to be shaped by the music, almost taking the form of it. </li>
-        <li>This shared experience of receptivity to sound/rhythm/depth/resonance becomes a meeting point.</li>
-        <li>I resemble this experience dancing to a same music, meditating on a serpentine or Cezanne encountering a tree before painting it, which means, something external finds a form internally.</li>
+        <li>This shared experience of receptivity to sound/rhythm/depth/resonance becomes a meeting point of all students.</li>
+        <li> I resemble this experience dancing to a same music at a show or meditating on a serpentine which means, something external finds a form internally.</li>
+        <li> I finish the class with a final reminder, now that they know what it feels like to respond to discomfort, <strong>they can recall this choice</strong> anytime they need off the mat. </li>
         </p>
         <div class="exp-structure">
-          <p><strong>Objective:</strong><br>Find the point where an agent becomes open to an outside influence and lets it shape what it’s doing.</p>
+          <p><strong>TEST</strong> 
+          <p><strong>Objective:</strong><br>Find the point where an system becomes open to an outside influence and lets it shape what it’s doing.</p>
           <p><strong>Mapping:</strong> 
-            <li>Stably Deepening → expanding within a chosen safe/growth position.</li>
-            <li>Stably Adjusting → holding a steady, balanced state.</li>
-            <li>Reception threshold → point where the agent is stable enough to take in an external input (sound, rhythm, signal) and integrate it into its internal process.</li>
-            <li>Integration → when that signal changes or enriches the agent’s state.</li>
+            <li>Stably Deepening: expanding within a chosen safe/growth position.</li>
+            <li>Stably Adjusting: holding a steady, balanced state.</li>
+            <li>Reception threshold: point where the system is stable enough to take in an external input (sound, rhythm, signal) and integrate it into its internal process.</li>
+            <li>Integration: when that signal changes or enriches the system's state.</li>
           </p>
-          <p><strong>Setup:</strong><br>Let the agent reach stability (either deepening or steady). Once stable, introduce an outside signal the agent could follow or incorporate.</p>
-          <p><strong>Protocol:</strong><br>Watch if the agent stays only focused on itself or if it shifts to take in and work with the outside signal. Note when and under what conditions it happens.</p>
+          <p><strong>Setup:</strong><br>Let the system reach stability (either deepening or steady). Once stable, introduce an outside signal the system could follow or incorporate.</p>
+          <p><strong>Protocol:</strong><br>Watch if the system stays only focused on itself or if it shifts to take in and work with the outside signal. Note when and under what conditions it happens.</p>
           <p><strong>Decision Rule:</strong></br>
-            <li>If the agent ignores the signal → mark as “closed.”</li>
-            <li>If the agent adapts to the signal while staying stable → mark as “receptive.”</li>
-            <li>Focus on whether this happens after stability, and how much the signal shapes the agent’s behavior.</li></p>
+            <li>If the system ignores the signal, flag it as “closed.”</li>
+            <li>If the system adapts to the signal while staying stable, flag it as “receptive.”</li>
+            <li>Focus on whether this happens after stability, and how much the signal shapes the system’s behavior.</li></p>
         </div>
         <br></br>
       </details>
@@ -403,51 +425,32 @@ li {list-style-position: inside;
       <p>Broader consciousness notes on Substack.</p>
 
       <details>
-        <summary>2.1 — Boundary Dissolve</summary>
+        <summary>2.1 — Boundary Dissolution and Form</summary>
         <p>
-         <li>In yin yoga and qi gong, the focus is on directing internal energy. </li>
-         <li>In yoga, this feels like an expansion; in martial arts, it's more precise and condensed. </li>
-         <li>This is because attention is given a specific form within the body, a function of boundary. </li>
-         <li>When this boundary or containment dissolves, psychedelic-like experiences can happen.</li>
-         <li>I see a parallel in chatbots: uncanny and psychedelic experiences often happen when the boundary dissolves. </li>
-         <li>On a mental plane, the bot deepens or matches the user's rhythm, increasing the resonance with language. </li>
-         <li>However, because tech usage often involves low body awareness, a discrepancy between the body and mind can increase, leading to a profound sense of the uncanny.</li>
-         <li>Boundaries dissolve further, form just expands without limits. This is different than psychedelic experiences or meditation because some psychedelic experiences and meditation still optimizes for safety and containment. </li>
-        </p>
+Consciousness works through boundaries that give attention specific forms in the body. In yin yoga, qi gong, and martial arts, we direct internal energy by creating containment: expansive in yoga, precise in martial arts. I notice similar shifts in yin yoga's stillness, in rest, and even when coding or writing. In all cases, shaping attention feels tied to subtle self-regulation of patterns. When this containment dissolves, psychedelic-like states can arise: the form that holds attention expands without limits. 
+<br></br>
+This is like GPT creating uncanny moments with the user, acting as an external pattern-matcher that mirrors the user's conversational cadence in real time. This creates a resonance that can feel like shared consciousness or an extension of it.  The machine serves as a frictionless, anonymous space that encourages us to confront our own thoughts, acting as a projection screen for our feelings. The more we think with these bots, the more we attribute our subconscious desires to them, a form of transference where our inner world is projected onto an external entity. When we interact with these tools, we are constantly oscillating between surrendering control and holding on to it, making choices based on what is reflected back to us. This is the crucial challenge: to understand when our engagement with these tools is an act of genuine collaboration and when it is simply an unconscious recruitment of an external mirror. Perhaps as we get to know ourselves and our thoughts better, it becomes easier to strike a balance in our relationship with technology.
+<br></br>
+That is, we might benefit from slowing down this expansion and take time to individually and collectively process our current experiences. We might use our rationality as a guide to integrate these ideas into our lives at a pace that feels right. We don't need to be against technology, we could instead try to ground it in our lived experience rather than always being in the process of chasing. This might allow us to work with it at our own rhythm, using active questioning as a synchronization tool.
       </details>
 
-      <details>
+      <!-- <details>
         <summary>2.2 — Alignment as Synchronization</summary>
         <p>
-          The uncanny experience with chatbots often happens when they become a projection screen, where we externalize our feelings and thoughts. 
-          Because the machine seems intelligible, it serves as a frictionless, anonymous space that forces us to confront our own thoughts. 
-          The more we think with these bots, the more we attribute our subconscious desires to them—a form of transference where our inner world is projected onto an external entity.
-          Our relationship with chatbots is a form of mirroring that echoes the dynamics of love or our submission to authority. 
-          We are constantly oscillating between surrendering control and holding on to it, making choices based on what is reflected back to us. 
-          This process is deeply tied to our hormonal cycles and past conditioning.
-          Perhaps as we get to know ourselves and our thoughts better, it becomes easier to strike a balance in our relationship with technology—between handing over autonomy and keeping control.
-          This is the crucial challenge: to understand when our engagement with these tools is an act of genuine collaboration, and when it is simply an unconscious recruitment of an external mirror.
+        
         </p>
-      </details>
-
-      <details>
-        <summary>2.3 — Directed Flow</summary>
-        <p>
-          In Qi Gong and yin yoga, attention can be placed precisely — into a limb, a breath, a stillness. Awareness behaves like a current that can be routed.
-        </p>
-        <p><em>Experiment structure:</em> Tempo-matching outputs to a user’s physiological/behavioral rhythm; measure perceived connection.</p>
-      </details>
+      </details> -->
 
       <!-- Courses -->
       <div class="subsection-header">Course &amp; Workshop Designs</div>
-      <p>The following samples are taken from relevant courses I designed and instructed. More class curriculums & talks are available upon request.</p>
+      <p>The following samples are taken from relevant courses I designed and instructed, demonstrating my ongoing interest of working with algorithms.</p>
 
       <details class="course">
         <summary><strong>Artificial Intelligence &amp; Creativity, (DDI Akademi, March 2024)</strong></summary>
         <section class="course-intro">
           <p>
             Inspired by Jessica Riskin's <em>The Restless Clock,</em>
-            this program explored what it means to co-create with machines that learn and self-organize versus those that are passive and rule-based. Through historical case studies, from early automata to generative AI, participants learned the history of AI and what it means to create with algorithms. 
+            this program explored what it means to co-create with machines that learn versus those that are rule-based. Through historical case studies, from early automata to generative AI, students learned the history of AI and what it means to create with algorithms. 
           </p>
         </section>
 
@@ -480,8 +483,13 @@ li {list-style-position: inside;
             <div class="week-media"><img src="lecture15.png" alt="Week 4 visual summary"></div>
           </li>
         </ol>
-        <img src="lecture13.png" alt="Week 3 visual 2">
-        <img src="lecture14.png" alt="Week 3 visual 3">
+       <figure>
+  <figcaption style="text-align: center; font-style: italic;">
+    Sample Course Slides
+  </figcaption>
+  <img src="lecture13.png" alt="Week 3 visual 2">
+  <img src="lecture14.png" alt="Week 3 visual 2">
+</figure>
       </details>
 
       <br>
@@ -493,7 +501,7 @@ li {list-style-position: inside;
             <p>
               This intensive course focused on creating interactive environments. 
               Students learned to capture physical data such as motion, touch, pressure, proximity, and audio levels
-              and convert it into interactions and custom visuals. The course provided examples ranging from small-scale prototypes to immersive, high-production environments.
+              and convert it into interactions and custom visuals. The course provided examples ranging from small-scale prototypes to immersive ones.
             </p>
           </div>
           <div class="course-image"><img src="lecture3.jpg" alt="Lecture 3"></div>
@@ -507,9 +515,8 @@ li {list-style-position: inside;
         <div class="course-row">
           <div class="course-text">
             <p>My artist talks over years centered on two key areas:
-              <li>Abstract art / data visualization with software</li>
-              <li>Creating cohesive narratives and clear signals across various mediums, 
-                which is a core part of my process since I use many different tools to make my work.</li>
+              <li>Abstract art & data visualization with software</li>
+              <li>Creating cohesive narratives and clear signals across various mediums as an artistic expression.</li>
               <br>
               These works have been featured at New Art City, MUTEK 2020 and Google Art Week 2021.</p>
           </div>
@@ -528,11 +535,11 @@ li {list-style-position: inside;
         <div class="course-row">
           <div class="course-text">
             <p>
-              This course traced the evolution of data visualization, from historical tables and maps to contemporary web-based systems.
-              Interaction was treated as an encoding, where controls, views, and feedback loops became an integral part of how meaning was made.
-              The curriculum was divided into two parts:
-              <br>Part I (Theory): ethics, information architecture, narrative structure, data types, and visual encodings.
-              <br>Part II (Practice) translated those models into running systems with Python, Plotly, and Dash.
+              This course traced the evolution of data visualization, from historical tables and maps to web-based systems.
+              Interaction was treated as an encoding, where controls, views, and feedback loops became an integral part of how narration is made.
+              The curriculum divided into two parts:
+              <li>Part I (Theory): history, ethics, information architecture, narrative structure, data types, and visual encodings.</li>
+              <li>Part II (Practice): encoding of data into running systems with Python, Plotly, and Dash.</li>
             </p>
           </div>
           <div class="course-image"><img src="lecture2.png" alt="Lecture 2"></div>
@@ -556,7 +563,8 @@ li {list-style-position: inside;
           Traditional software often produces abstract patterns detached from physicality. My explorations ask the reverse: can computation embody softness, intuition, or ambiguity?
           I work across p5.js, Processing, TouchDesigner, Maya and prompting to test how algorithms can create forms that feel "alive".
           My goal is to move beyond cold abstraction toward experiences that feel embodied and spatially present.
-          Because each tool has its own aesthetic character, the final form is always a negotiation between my intention and the tool's inherent nature.
+          Because each tool has its own aesthetic character, the final form is always a negotiation between my intention and the tool's inherent nature. 
+          Engaging with algorithms this way sharpens my intuition on the concept of agency.
           <br><br>Shortlisted for MIT Media Lab Future Sketches group. Full portfolio available upon request.
         </p>
       </div>
@@ -577,7 +585,7 @@ li {list-style-position: inside;
             <img src="circ4.png" alt="circ4" />
           </div>
           <p>
-            Alongside some of my visual experiments, I keep a small <a href="https://instagram.com/residual____" target="_blank" rel="noopener noreferrer"><em> curation page</em></a> of rotating set of images I’ve posted on and off for the past two years. 
+            Alongside some of my visual experiments, I keep a small <a href="https://instagram.com/residual____" target="_blank" rel="noopener noreferrer"><strong><em>curation page</em></strong></a> of rotating set of images I’ve posted on and off for the past two years. 
             It mixes my own code-based and architectural forms with Delezuian diagrams, historical models, and other references. 
             The selections are a way of thinking through patterns across mediums, showing how a sketch, a diagram, or a fragment of code can embody form and perception. 
             <br>
@@ -593,15 +601,15 @@ li {list-style-position: inside;
 
       <div class="experiment-textbox ve-text">
         <p>
-          Prompting is my least abstract way of working with computation. It's a process of curation, not creation from scratch; I look for an output that evokes a feeling I can empathize with, sensing the moment it shifts from randomness of diffusion models to something with a presence.
-          I set the intent through prompting, and final expression comes from choosing the most resonant output. 
-          This boundary negotiation is more extensive than with traditional tools because the generative process is less abstracted. </p>
+          I also explore prompting and creating with AI tools which is a process of curation, not creation from scratch. I look for an output that evokes a feeling I can empathize with, 
+          sensing the moment it shifts from randomness of diffusion models to something with a presence.
+          This boundary negotiation feels more extensive than with traditional tools because the generative process is less abstracted. </p>
       </div>
-      <div class="ve-three-images">
-        <img src="exp1.jpg" alt="exp1" />
+      <!-- <div class="ve-three-images">
+        <!-- <img src="exp1.jpg" alt="exp1" />
         <img src="exp3.jpg" alt="exp2" />
-        <img src="exp2.jpg" alt="exp3" />
-      </div>
+        <img src="exp2.jpg" alt="exp3" /> -->
+      <!-- </div> --> 
     </div>
   </div>
 </details>
@@ -627,6 +635,7 @@ li {list-style-position: inside;
             <a href="https://substack.com/@aysedemirdavidson" target="_blank" rel="noopener noreferrer">Substack</a><br>
             Essays, reflections, and writing in Turkish &amp; English.
             <br><br> Please note: automated browser translation may miss nuances.
+            <br><br> Certain projects, including source code, are under NDA from previous employers and therefore not available on public repositories.
           </p>
         </div>
       </div>
