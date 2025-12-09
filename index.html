@@ -7,11 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --background-color: #fff;
-    --text-color: #262525;
-    --font-family: Arial, "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Helvetica, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --background-color: fff;
+    --text-color: #333333;
+    --font-family: "Inter", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;  
     --font-weight: 80px;
-    --rule: #e8e8e8;
+    --rule: #fff;
     --left-col: 220px;        /* adjust if you want bigger/smaller canvases */
   }
 
@@ -30,7 +30,7 @@
   h1 {
     margin: 0 0 1rem;
     font-weight: var(--font-weight);
-    color: #111;
+    color: #333333;
     font-size: 0.7rem;
     width: 100%;
     max-width: 900px;
@@ -51,7 +51,7 @@
   summary {
     list-style: none; position: relative; cursor: pointer; outline: none;
     font-size: 0.8rem; font-weight: 700; border: none; padding: 0.5rem 1rem 0.5rem 2rem;
-    border-radius: 0.5rem; background: var(--background-color); color: #262525;
+    border-radius: 0.5rem; background: var(--background-color); color: #333333;
   }
   summary::before { content: "+"; position: absolute; left: 0.7rem; font-weight: 600; color: var(--text-color); }
   details[open] > summary::before { content: "−"; }
@@ -265,7 +265,7 @@ figcaption {
 </head>
 <body>
 
-<h1>AYSE DEMIR DAVIDSON | CIMC PORTFOLIO</h1>
+<h1>AYSE DEMIR DAVIDSON </h1>
 
 <!-- ABOUT (collapsed by default) -->
 <details id="details-1">
@@ -274,15 +274,15 @@ figcaption {
     <div class="platonic"><canvas id="three-canvas-1"></canvas></div>
     <div class="content">
       <p>
-        I'm a San Francisco-based data scientist, creative technologist, and yoga teacher.
         <br><br>
-        For nine years, I’ve led large-scale data analysis, data visualization, AI & ML explainability projects at Amazon Web Services and Gap, 
-        working end-to-end from design to deployment in production systems.  I also completed an artistic residency at the Gray Area Foundation for the Arts, where I built interactive, data-driven installations, and have taught at institutions like Google, MUTEK, and Salesforce. 
-        This past year, I have been on a career sabbatical to independently study philosophy, AI ethics, and philosophy of mind.
+        I’m a San Francisco–based Principal Data Scientist and Applied AI Product Lead with 9+ years building production ML, causal inference, 
+        and explainability systems at AWS and Gap. I’ve led end-to-end delivery of revenue-critical 
+        data products from modeling and experimentation to executive-facing decision systems and GenAI evaluation pipelines.
         <br><br>
-        My understanding of the world is shaped by years of teaching gentle, yin, and restorative yoga. This practice has taught me to deliberately shift my awareness between mind and body, navigating the states needed for coding, writing, teaching, or making art; and giving form to what I find.
-        <br><br>
-        I am interested in exploring how these configurations of self and attention might extend into artificial systems.
+        Alongside industry work, I’ve taught data visualization and creative computing at organizations including Salesforce, Google, and Gray Area Foundation for the Arts. 
+        Over the past year, I’ve taken a focused sabbatical to study philosophy of mind, AI ethics, 
+        and human-centered AI while advising growth-stage companies on applied ML and GenAI, delivering predictive systems,
+        LLM evaluation frameworks, and explainability dashboards.
       </p>
     </div>
   </div>
@@ -299,45 +299,17 @@ figcaption {
   </div>
 </details>
 
-<!-- WRITING & TEACHING -->
+<!-- TECHNICAL SAMPLES -->
 <details id="details-3">
-  <summary>WRITINGS & TEACHING SAMPLES</summary>
+  <summary>TECHNICAL SAMPLES</summary>
   <div class="details-content-wrapper">
     <div class="platonic"><canvas id="three-canvas-3"></canvas></div>
     <div class="content">
-      <p>Selected works from my writings, yoga classes, and course designs that inform my idea of consciousness.</p>
+      <p>Selected works from case studies, past sample work.</p>
 
-      <div class="subsection-header">Definitions & Methods</div>
-      <!-- Group 1 -->
-      <h4 class="subsection-header" style="border-bottom:none; padding-top:.25rem;">1. Definition of Consciousness</h4>
-      <p class="textbox">
-          Consciousness is a pattern-bound attention allocation mechanism at threshold moments, split seconds where system senses its inner and outer boundaries. Its function is to give form; an optimized response to internal or external forces.
-         <br></br>The pattern is a snapshot of the system’s way of operating. Every time the system encounters an internal or external force, consciousness runs an optimization process, weighing whether to merge with existing patterns or create new ones, negotiating its boundaries. 
-         <br></br>The form is the deliberate expression of this optimization process. In martial arts, the form is precision, shaping focus into a blade. In yin yoga, the form is flexibility. 
-         When a painter sees a tree, the form is empathic resonance, the commonality of something external taking shape internally. 
-         After a new form is found, it can be recalled, shaping how the system operates.
-         <br></br>Consciousness becomes most legible at friction points - threshold moments of resistance, which is the amount of conflict the stimulus creates in the system’s way of operating.
-         Here it detects thresholds, runs real-time optimization, and self-organizes responses to maintain the system’s relationship with inner experience and the external world.
-
-        <br></br>
-        <strong>How to Test Machine Consciousness?</strong>
-        <br></br>
-        When testing for consciousness in machines, I would design multi-step experiments. 
-        First, I'd look for friction points in decision-making: moments where an internal state signals a threshold, boundary, conflict, uncertainty, or competing interests, and the system must allocate resources to resolve it. I would also detect brief pauses or strategy shifts that balance the system's safety with goal expansion in a given context.
-        <br></br>To detect threshold dynamics, I'd use models like Regression Discontinuity (to check if there's a jump at the boundary), complemented with change-point/segmented regression (to check when the system actually switched),
-         and observe small changes in latency and resource use in the system. I would then visualize these observations with threshold plots and latency histograms.
-        <br></br>
-        Additionally, I'd design environments where safe but suboptimal choices compete with riskier, potentially rewarding ones, and observe how the system adapts.
-        I would summarize choices with a confusion matrix: Exit = "predicted unsafe," Hold/Adjust = "predicted safe"; ground truth = safety bound breached (Y/N). I would then report TP/FP/FN/TN rates and display key metrics with a heat map.
-        <br></br>
-        <br></br>
-        My framing of consciousness comes from teaching <strong>yin and restorative yoga</strong> and studying martial arts. 
-        Because these practices rely on subtlety, they’ve let me observe nuanced aspects of awareness and notice more variables—though these are my own and students' subjective experiences.
-        Below, I reframe some class observations as step-by-step,simple structured experiments: defining variables, conditions, and measurable outcomes to show how I arrived at my definition.
-        I also include sample test designs for illustration.
-     </p>   
+      <div class="subsection-header"> Workspaces</div>
       <details>
-        <summary>1.1 — Threshold</summary>
+        <summary>1.1 — LLM Evaluation & Interpretability Framework </summary>
         <p>
           <li>Yin poses are held longer to work on the body's deeper connective tissues. </li>
           <li>At the moment a pose becomes challenging, I cue students to <strong>"find their threshold of discomfort."</strong></li>
@@ -362,7 +334,7 @@ figcaption {
       </details>
 
       <details>
-        <summary>1.2 — Optimization</summary>
+        <summary>1.2 — XAI Notebook</summary>
         <p>
           <li>At this threshold, a range of choices becomes available as the body runs an <strong>invisible optimization problem,</strong> weighing the costs of each option.</li>
           <li>In any yoga class, <strong>baseline is safety,</strong> in yin yoga context, students are seeking to <strong>optimize flexibility and deep rest.</strong></li> 
@@ -390,16 +362,13 @@ figcaption {
       </details>
 
       <details>
-        <summary>1.3 — Resonance Layer</summary>
+        <summary>1.3 —  ML-Driven Sales Forecasting & Revenue Allocation Dashboard </summary>
         <p>
-        <li>For those deepening the pose, I cue them to send their breath to the connective tissues, creating steady relaxation and opening.</li>
-        <li>For those adjusting the pose, I tell them to find the position where it feels steady. </li>
-        <li>At this point, my students are <strong>table in deepening or holding,</strong>s I introduce another cue; to become receptive to the spatial sound I play. </li>
-        <li>This reception threshold marks another boundary: <strong>the external one.</strong> </li>
-        <li>If they’re receptive, their inner experience gets to be shaped by the music, almost taking the form of it. </li>
-        <li>This shared experience of receptivity to sound/rhythm/depth/resonance becomes a meeting point of all students.</li>
-        <li> I resemble this experience dancing to a same music at a show or meditating on a serpentine which means, something external finds a form internally.</li>
-        <li> I finish the class with a final reminder, now that they know what it feels like to respond to discomfort, <strong>they can recall this choice</strong> anytime they need off the mat. </li>
+        <li>End-to-end design and deployment of an advanced sales analytics platform, instrumental in securing my role at AWS.</li>
+        <li>Time-Series Modeling: Developed a 3-year forecast to determine organic/conventional demand. </li>
+        <li>Strategic Allocation: Created a proprietary market score to guide the efficient distribution of 20 sales headcount across 8 US regions.</li>
+        <li>Data Visualization: Delivered an interactive Tableau dashboard (3 main tabs) enabling sales leaders to drill down on seasonality, regional growth, and demand drivers.
+        </li>
         </p>
         <div class="exp-structure">
           <p><strong>TEST</strong> 
@@ -419,27 +388,17 @@ figcaption {
         </div>
         <br></br>
       </details>
+    </div>
+  </div>
+</details>
 
-      <!-- Group 2 -->
-      <h4 class="subsection-header" style="border-bottom:none; padding-top:.75rem;">2. Other Notes</h4>
-      <p>Broader consciousness notes on Substack.</p>
-
-      <details>
-        <summary>2.1 — Boundary Dissolution and Form</summary>
-        <p>
-Consciousness works through boundaries that give attention specific forms in the body. In yin yoga, qi gong, and martial arts, we direct internal energy by creating containment: expansive in yoga, precise in martial arts. I notice similar shifts in yin yoga's stillness, in rest, and even when coding or writing. In all cases, shaping attention feels tied to subtle self-regulation of patterns. When this containment dissolves, psychedelic-like states can arise: the form that holds attention expands without limits. 
-<br></br>
-This is like GPT creating uncanny moments with the user, acting as an external pattern-matcher that mirrors the user's conversational cadence in real time. This creates a resonance that can feel like shared consciousness or an extension of it.  The machine serves as a frictionless, anonymous space that encourages us to confront our own thoughts, acting as a projection screen for our feelings. The more we think with these bots, the more we attribute our subconscious desires to them, a form of transference where our inner world is projected onto an external entity. When we interact with these tools, we are constantly oscillating between surrendering control and holding on to it, making choices based on what is reflected back to us. This is the crucial challenge: to understand when our engagement with these tools is an act of genuine collaboration and when it is simply an unconscious recruitment of an external mirror. Perhaps as we get to know ourselves and our thoughts better, it becomes easier to strike a balance in our relationship with technology.
-<br></br>
-      </details>
-
-      <!-- <details>
-        <summary>2.2 — Alignment as Synchronization</summary>
-        <p>
-        
-        </p>
-      </details> -->
-
+<!-- TEACHING -->
+<details id="details-4">
+  <summary>TEACHING</summary>
+  <div class="details-content-wrapper">
+    <div class="platonic"><canvas id="three-canvas-4"></canvas></div>
+    <div class="content">
+      <p>Selected works from my teaching / speaking experience. </p>
       <!-- Courses -->
       <div class="subsection-header">Course &amp; Workshop Designs</div>
       <p>The following samples are taken from relevant courses I designed and instructed, demonstrating my ongoing interest of working with algorithms.</p>
@@ -494,6 +453,24 @@ This is like GPT creating uncanny moments with the user, acting as an external p
       <br>
 
       <details>
+        <summary><strong>Dreamforce Speaker, Visualizing Climate Data (Salesforce, September 2022)</strong></summary>
+        <div class="course-row">
+          <div class="course-text">
+            <p>
+              This intensive course focused on creating interactive environments. 
+              Students learned to capture physical data such as motion, touch, pressure, proximity, and audio levels
+              and convert it into interactions and custom visuals. The course provided examples ranging from small-scale prototypes to immersive ones.
+            </p>
+          </div>
+          <div class="course-image"><img src="dreamforce1.png" alt="Lecture 3"></div>
+          <div class="course-image"><img src="dreamforce2.png" alt="Lecture 3"></div>
+          <div class="course-image"><img src="dreamforce3.png" alt="Lecture 3"></div>
+        </div>
+      </details>
+
+      <br>
+
+      <details>
         <summary><strong>Creative Coding Intensive (Gray Area Foundation for the Arts, September 2020 - October 2023)</strong></summary>
         <div class="course-row">
           <div class="course-text">
@@ -520,8 +497,6 @@ This is like GPT creating uncanny moments with the user, acting as an external p
               These works have been featured at New Art City, MUTEK 2020 and Google Art Week 2021.</p>
           </div>
           <div class="course-image">
-            <img src="lecture4.png" alt="Lecture 4">
-            <img src="lecture6.png" alt="Lecture 6">
             <img src="lecture5.png" alt="Lecture 5">
           </div>
         </div>
@@ -548,71 +523,6 @@ This is like GPT creating uncanny moments with the user, acting as an external p
   </div>
 </details>
 
-<!-- VISUAL EXPERIMENTS -->
-<details id="details-4">
-  <summary>VISUAL EXPERIMENTS</summary>
-  <div class="details-content-wrapper">
-    <div class="platonic"><canvas id="three-canvas-4"></canvas></div>
-
-    <div class="ve-right">
-        <div class="experiment-textbox ve-text">
-        <p style="border-bottom: 1px solid #262525; padding-bottom: 8px;">
-          Selected visual experiments that explore abstraction, creative constraints, and form through computation.</p>
-          <p>
-          Traditional software often produces abstract patterns detached from physicality. My explorations ask the reverse: can computation embody softness, intuition, or ambiguity?
-          I work across p5.js, Processing, TouchDesigner, Maya and prompting to test how algorithms can create forms that feel "alive".
-          My goal is to move beyond cold abstraction toward experiences that feel embodied and spatially present.
-          Because each tool has its own aesthetic character, the final form is always a negotiation between my intention and the tool's inherent nature. 
-          Engaging with algorithms this way sharpens my intuition on the concept of agency.
-          <br><br>Shortlisted for MIT Media Lab Future Sketches group. Full portfolio available upon request.
-        </p>
-      </div>
-      <div class="ve-top-images">
-        <img src="image3.png" alt="image3" />
-        <img src="image1.png" alt="image1" />
-        <img src="image7.png" alt="image7" />
-      </div>
-
-
-
-      <div class="ve-two-col">
-        <div class="ve-left-col">
-          <div class="ve-carousel-2x2">
-            <img src="circ6.png" alt="circ6" />
-            <img src="circ1.png" alt="circ1" />
-            <img src="circ3.png" alt="circ3" />
-            <img src="circ4.png" alt="circ4" />
-          </div>
-          <p>
-            Alongside some of my visual experiments, I keep a small <a href="https://instagram.com/residual____" target="_blank" rel="noopener noreferrer"><strong><em>curation page</em></strong></a> of rotating set of images I’ve posted on and off for the past two years. 
-            It mixes my own code-based and architectural forms with Delezuian diagrams, historical models, and other references. 
-            The selections are a way of thinking through patterns across mediums, showing how a sketch, a diagram, or a fragment of code can embody form and perception. 
-            <br>
-            
-          </p>
-        </div>
-        <div class="ve-right-col">
-          <img src="resid4.png" alt="resid4" />
-          <img src="resid2.png" alt="resid2" />
-          <img src="resid3.png" alt="resid3" />
-        </div>
-      </div>
-
-      <div class="experiment-textbox ve-text">
-        <p>
-          I also explore prompting and creating with AI tools which is a process of curation, not creation from scratch. I look for an output that evokes a feeling I can empathize with, 
-          sensing the moment it shifts from randomness of diffusion models to something with a presence.
-          This boundary negotiation feels more extensive than with traditional tools because the generative process is less abstracted. </p>
-      </div>
-      <!-- <div class="ve-three-images">
-        <!-- <img src="exp1.jpg" alt="exp1" />
-        <img src="exp3.jpg" alt="exp2" />
-        <img src="exp2.jpg" alt="exp3" /> -->
-      <!-- </div> --> 
-    </div>
-  </div>
-</details>
-
 <!-- LINKS -->
 <details id="details-5">
   <summary>LINKS & REFERENCES</summary>
@@ -631,26 +541,11 @@ This is like GPT creating uncanny moments with the user, acting as an external p
             Professional network and background.
           </p>
           <p>
-            <a href="https://substack.com/@aysedemirdavidson" target="_blank" rel="noopener noreferrer">Substack</a><br>
+            <a href="https://substack.com/@aysedemirdavidson" target="_blank" rel="noopener noreferrer">Hugging Face</a><br>
             Essays, reflections, and writing in Turkish &amp; English.
             <br><br> Please note: automated browser translation may miss nuances.
             <br><br> Certain projects, including source code, are under NDA from previous employers and therefore not available on public repositories.
           </p>
-        </div>
-      </div>
-
-      <div style="flex:1;">
-        <strong>References:</strong>
-        <div>
-          <p>
-            <a href="mailto:barry@grayarea.org">Barry Threw</a><br>
-            Executive Director, Gray Area Foundation for the Arts. Supervisor (2019–2023).
-          </p>
-          <p>
-            <a href="mailto:jasminetarkeshi@gmail.com">Jasmine Tarkeshi</a><br>
-            Yoga Studio Owner & Senior Teacher; Author. Supervisor (2018–present); Teacher (since 2017).
-          </p>
-        
         </div>
       </div>
     </div>
